@@ -1,0 +1,12 @@
+{
+  // Cloudflare Workers config: serves the static site built into dist/.
+  // Docs: https://developers.cloudflare.com/workers/static-assets/
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "tetondems-website",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash"
+  }
+}

@@ -4,7 +4,7 @@ The website of the Teton County Democratic Party, Jackson Hole, Wyoming.
 
 It is a static site: every page, news post, event, and candidate is a small
 Markdown file in this repository. [Astro](https://astro.build) turns those files
-into plain HTML, [Cloudflare Pages](https://pages.cloudflare.com) serves them for
+into plain HTML, [Cloudflare Workers](https://developers.cloudflare.com/workers/static-assets/) serves them for
 free, and [Sveltia CMS](https://github.com/sveltia/sveltia-cms) gives officers a
 browser-based editor at `/admin` that saves straight to this repository.
 
@@ -71,13 +71,16 @@ repository there as `tetondems/tetondems-website`, and invite each editor as a
 member with write access. Update `repo:` in `public/admin/config.yml` if you
 pick a different name.
 
-### 2. Cloudflare Pages
+### 2. Cloudflare Workers (static assets)
 
-1. In the Cloudflare dashboard, **Workers & Pages → Create → Pages → Connect
-   to Git**, choose the repository.
-2. Build settings: framework preset **Astro**, build command `npm run build`,
-   output directory `dist`. Node version is pinned by `.node-version`.
-3. Every push to `main` deploys. Pull requests get preview URLs.
+1. In the Cloudflare dashboard, **Workers & Pages → Create → Import a
+   repository**, choose `tetondems/tetondems-website`.
+2. Build settings: build command `npm run build`, deploy command
+   `npm run deploy`, root directory `/`. `wrangler.jsonc` in the repo tells
+   Cloudflare to serve the `dist` folder as a static site; `.node-version`
+   pins Node.
+3. Every push to `main` deploys to the `*.workers.dev` address. Non-production
+   branches get preview builds.
 
 ### 3. Editor sign-in (Sveltia CMS auth)
 
@@ -95,12 +98,12 @@ Cloudflare Worker (free tier is fine):
 
 ### 4. Domain cutover (after the November 3, 2026 election)
 
-1. In Cloudflare Pages, add the custom domains `tetondems.org` and
+1. In the Cloudflare Worker's settings, add the custom domains `tetondems.org` and
    `www.tetondems.org`. Cloudflare shows the CNAME records to create.
 2. At GoDaddy (where the domain and DNS live), replace the Squarespace A records
    and the `www` CNAME with the records Cloudflare gives you. Leave the Google
    Workspace MX records alone.
-3. `public/_redirects` already maps every old Squarespace URL to its new home,
+3. `public/_redirects` (Cloudflare reads it from the assets folder) already maps every old Squarespace URL to its new home,
    so printed links and search results keep working.
 4. Before the March 8, 2027 renewal, turn off auto-renew in Squarespace and
    cancel the plan.
