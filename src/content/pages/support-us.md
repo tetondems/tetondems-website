@@ -1,7 +1,7 @@
 ---
 title: Support Us
 navTitle: Support Us
-description: Support Us
+description: Your donation elects Democrats, moves party priorities forward, and keeps the community informed.
 section: Support Us
 order: 1
 archived: false

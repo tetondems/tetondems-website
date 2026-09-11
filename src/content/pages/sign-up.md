@@ -1,7 +1,7 @@
 ---
 title: Join our e-mail list
 navTitle: Join our e-mail list
-description: Sign Up
+description: Hear about events, elections, and ways to help. We send a few emails a year, never spam.
 section: Get Involved
 order: 5
 archived: false

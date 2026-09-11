@@ -1,7 +1,7 @@
 ---
 title: Who We Are
 navTitle: Who We Are
-description: About Us
+description: Officers, precinct committee officers, and what the Teton County Democratic Party stands for.
 section: Who We Are
 order: 1
 archived: false

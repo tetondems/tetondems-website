@@ -61,12 +61,16 @@ h4 { font-family: var(--font-slab); font-size: 1.1rem; font-weight: 600; }
 .button.ghost { background: transparent; color: var(--navy); border-color: var(--navy); }
 .button.ghost:hover { background: var(--navy); color: var(--white); }
 
-/* Long-form page content (Markdown from the CMS) */
+/* Long-form page content (Markdown from the CMS).
+   Page titles use the condensed display face; headings inside content use the
+   slab face, as the brand guide pairs Korolev headlines with Sutro subheads. */
 .prose { max-width: var(--measure); }
 .prose > * + * { margin-top: 1em; }
-.prose h2 { margin-top: 2em; }
-.prose h3 { margin-top: 1.6em; }
-.prose h4 { margin-top: 1.4em; }
+.prose h2 { font-family: var(--font-slab); font-weight: 600; text-transform: none; font-size: 1.55rem; line-height: 1.25; margin-top: 2em; padding-top: 0.6em; border-top: 3px solid var(--electric); max-width: 30ch; }
+.prose h2:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
+.prose h3 { font-size: 1.2rem; margin-top: 1.6em; color: var(--navy); }
+.prose h4 { font-size: 1.02rem; margin-top: 1.4em; text-transform: uppercase; font-family: var(--font-display); letter-spacing: 0.06em; color: var(--electric-ink); }
+.prose strong { color: var(--dark-navy); }
 .prose ul, .prose ol { padding-left: 1.4em; }
 .prose li + li { margin-top: 0.35em; }
 .prose img { border-radius: 4px; }
@@ -82,8 +86,10 @@ h4 { font-family: var(--font-slab); font-size: 1.1rem; font-weight: 600; }
 /* Cards used for events, news, candidates */
 .grid { display: grid; gap: 24px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
 .card { display: flex; flex-direction: column; gap: 10px; background: var(--white); border: 1px solid var(--light-grey); border-radius: 4px; overflow: hidden; }
-.card > a.cover { display: block; aspect-ratio: 16 / 10; background: var(--pale); }
+.card > a.cover { display: block; aspect-ratio: 16 / 10; background: var(--pale); position: relative; overflow: hidden; }
 .card > a.cover img { width: 100%; height: 100%; object-fit: cover; }
+.card > a.cover.placeholder { background: linear-gradient(160deg, #e6f6fd, #cdeefb); display: grid; place-items: center; }
+.card > a.cover.placeholder img { width: 38%; height: auto; opacity: 0.9; }
 .card .body { padding: 4px 18px 18px; display: flex; flex-direction: column; gap: 8px; }
 .card h3 { font-size: 1.25rem; }
 .card h3 a { color: var(--dark-navy); text-decoration: none; }
@@ -91,7 +97,8 @@ h4 { font-family: var(--font-slab); font-size: 1.1rem; font-weight: 600; }
 .card .when { font-family: var(--font-display); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--electric-ink); font-size: 0.95rem; font-variant-numeric: tabular-nums; }
 .card .where, .card .excerpt { color: var(--dark-grey); font-size: 0.95rem; }
 
-.page-head { padding: 48px 0 24px; border-bottom: 4px solid var(--electric); margin-bottom: 40px; }
+.page-head { padding: 48px 0 24px; border-bottom: 4px solid var(--electric); margin-bottom: 40px; position: relative; }
+.page-head::after { content: ""; position: absolute; right: 0; bottom: 12px; width: 96px; height: 78px; background: url('/images/brand/mark.svg') no-repeat right bottom / contain; opacity: 0.14; pointer-events: none; }
 .page-head .eyebrow { margin-bottom: 8px; }
 .page-head p.lede { font-size: 1.2rem; max-width: var(--measure); color: var(--dark-grey); margin: 12px 0 0; }
 .section { padding: 56px 0; }

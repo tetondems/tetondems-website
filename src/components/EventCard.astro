@@ -1,17 +1,19 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import { formatEventDate } from '../lib/dates';
-interface Props { event: CollectionEntry<'events'> }
-const { event } = Astro.props;
+interface Props { event: CollectionEntry<'events'>; compact?: boolean }
+const { event, compact = false } = Astro.props;
 const { title, start, end, location, image, excerpt } = event.data;
 const href = `/events/${event.id}`;
 ---
 <article class="card">
-  {image && <a class="cover" href={href} tabindex="-1" aria-hidden="true"><img src={image} alt="" loading="lazy" /></a>}
+  {image
+    ? <a class="cover" href={href} tabindex="-1" aria-hidden="true"><img src={image} alt="" loading="lazy" /></a>
+    : <a class="cover placeholder" href={href} tabindex="-1" aria-hidden="true"><img src="/images/brand/mark.svg" alt="" /></a>}
   <div class="body">
     <p class="when">{formatEventDate(start, end)}</p>
     <h3><a href={href}>{title}</a></h3>
-    {location?.name && <p class="where">{location.name}{location.address && ` · ${location.address}`}</p>}
-    {excerpt && <p class="excerpt">{excerpt}</p>}
+    {location?.name && <p class="where">{location.name}{location.address && !compact && ` · ${location.address}`}</p>}
+    {excerpt && !compact && <p class="excerpt">{excerpt}</p>}
   </div>
 </article>
