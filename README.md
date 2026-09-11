@@ -31,6 +31,22 @@ Things to know:
   donate link, and the Mailchimp form settings used across the site.
 - Uploaded images go in `public/images/uploads`. Keep them under about 1 MB.
 
+## Adding an editor
+
+1. Ask them to create a free account at <https://github.com/signup> (any email
+   works; they never need to touch GitHub itself after this).
+2. In the `tetondems` organization, **People → Invite member**, enter their
+   GitHub username, role **Member**. They accept the emailed invitation.
+3. Members get write access to the site repository through the org's base
+   permission, so nothing else to grant. To remove an editor later, remove them
+   from the org.
+4. Send them <https://www.tetondems.org/admin>. The first sign-in asks them to
+   authorize the "Teton Dems site editor" app; that is expected.
+
+Recommended: in the org's **Settings → Authentication security**, require
+two-factor authentication. It adds one setup step for editors and keeps a
+volunteer's stolen password from becoming a defaced party website.
+
 ## Working on the code
 
 ```bash
@@ -95,6 +111,9 @@ Cloudflare Worker (free tier is fine):
    `GITHUB_CLIENT_ID` / `GITHUB_CLIENT_SECRET` variables, and
    `ALLOWED_DOMAINS` set to `www.tetondems.org`.
 3. Put the worker URL in `base_url:` in `public/admin/config.yml`.
+
+Done September 2026: worker at `sveltia-cms-auth.crimson-mouse-af47.workers.dev`,
+OAuth app "Teton Dems site editor" owned by the `tetondems` org.
 
 ### 4. Domain cutover (after the November 3, 2026 election)
 
