@@ -13,8 +13,11 @@ site_url: https://www.tetondems.org
 display_url: https://www.tetondems.org
 logo_url: /images/brand/180425-sed-tetondems-logo-location-01.svg
 
-media_folder: public/images/uploads
-public_folder: /images/uploads
+# All site images live under public/images (archive/, candidates/, site/, uploads/).
+# Pointing the editor at the whole folder lets it preview imported photos and
+# lets editors reuse them; new uploads can go in the uploads/ subfolder.
+media_folder: public/images
+public_folder: /images
 
 collections:
   - name: events

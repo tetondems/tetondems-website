@@ -29,7 +29,8 @@ Things to know:
   the store, and so on) are archived this way.
 - **Site settings** holds the contact details, social links, the ActBlue
   donate link, and the Mailchimp form settings used across the site.
-- Uploaded images go in `public/images/uploads`. Keep them under about 1 MB.
+- The editor's media library shows everything under `public/images`. Put new
+  uploads in the `uploads` subfolder and keep them under about 1 MB.
 
 ## Adding an editor
 
