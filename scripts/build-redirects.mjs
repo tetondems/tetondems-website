@@ -15,6 +15,7 @@ const lines = [
   '/news-1 /news 301',
   '/news-1/* /news 301',
   '/calendar-of-events /events 301',
+  '/events/* /events 301',
   '/candidates-campaigns /candidates 301',
   '/2024-teton-county-candidates /candidates 301',
   '/new-products /support-us 301',
@@ -37,8 +38,12 @@ for (const file of fs.readdirSync(path.join(content, 'pages'))) {
   const target = fm.archived === 'true' ? '/' : `/${slug}`;
   if (fm.squarespacePath !== target) lines.push(`${fm.squarespacePath} ${target} 301`);
 }
+// Cloudflare caps _redirects at 100 "dynamic" rules and counts these deep links
+// against it, so only items from 2024 on get exact redirects. Older ones fall
+// back to the /events/* and /news-1/* section rules above.
 for (const dir of ['events', 'news']) {
   for (const file of fs.readdirSync(path.join(content, dir))) {
+    if (!/^20(2[4-9]|[3-9]\d)-/.test(file)) continue;
     const fm = frontmatter(path.join(content, dir, file));
     if (fm.squarespacePath) lines.push(`${fm.squarespacePath} /${dir}/${file.replace(/\.md$/, '')} 301`);
   }
