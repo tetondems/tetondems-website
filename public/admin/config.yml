@@ -7,7 +7,7 @@ backend:
   name: github
   repo: tetondems/tetondems-website
   branch: main
-  base_url: https://sveltia-cms-auth.CHANGE-ME.workers.dev
+  base_url: https://sveltia-cms-auth.crimson-mouse-af47.workers.dev
 
 site_url: https://www.tetondems.org
 display_url: https://www.tetondems.org
