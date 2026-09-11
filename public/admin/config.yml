@@ -1,0 +1,143 @@
+# Sveltia CMS configuration (Decap-compatible).
+# Editors sign in with GitHub at https://www.tetondems.org/admin
+#
+# SETUP (one time): set `repo` to the party's GitHub repository and `base_url`
+# to the deployed sveltia-cms-auth Cloudflare Worker. See README.md.
+backend:
+  name: github
+  repo: tetondems/tetondems-website
+  branch: main
+  base_url: https://sveltia-cms-auth.CHANGE-ME.workers.dev
+
+site_url: https://www.tetondems.org
+display_url: https://www.tetondems.org
+logo_url: /images/brand/180425-sed-tetondems-logo-location-01.svg
+
+media_folder: public/images/uploads
+public_folder: /images/uploads
+
+collections:
+  - name: events
+    label: Events
+    label_singular: Event
+    folder: src/content/events
+    create: true
+    extension: md
+    format: frontmatter
+    slug: "{{fields.start | date('YYYY-MM-DD')}}-{{slug}}"
+    sortable_fields: [start, title]
+    summary: "{{start | date('MMM D, YYYY')}} — {{title}}"
+    fields:
+      - { name: title, label: Event name, widget: string }
+      - { name: start, label: Starts, widget: datetime, format: "YYYY-MM-DDTHH:mm:ssZ", picker_utc: false, hint: "Mountain time" }
+      - { name: end, label: Ends, widget: datetime, format: "YYYY-MM-DDTHH:mm:ssZ", picker_utc: false, required: false }
+      - name: location
+        label: Location
+        widget: object
+        required: false
+        fields:
+          - { name: name, label: Place, widget: string, required: false, hint: "e.g. Teton County Library" }
+          - { name: address, label: Address, widget: string, required: false }
+          - { name: url, label: Map or venue link, widget: string, required: false }
+      - { name: image, label: Image, widget: image, required: false, hint: "Optional poster or photo" }
+      - { name: excerpt, label: One-line summary, widget: text, required: false, hint: "Shown on the events list and homepage" }
+      - { name: link, label: RSVP or details link, widget: string, required: false }
+      - { name: categories, label: Categories, widget: list, required: false, default: [] }
+      - { name: body, label: Details, widget: markdown }
+
+  - name: news
+    label: News
+    label_singular: Post
+    folder: src/content/news
+    create: true
+    extension: md
+    format: frontmatter
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    sortable_fields: [date, title]
+    summary: "{{date | date('MMM D, YYYY')}} — {{title}}"
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: date, label: Date, widget: datetime, format: "YYYY-MM-DD", time_format: false }
+      - { name: image, label: Image, widget: image, required: false }
+      - { name: excerpt, label: Summary, widget: text, required: false }
+      - { name: categories, label: Categories, widget: list, required: false, default: [] }
+      - { name: tags, label: Tags, widget: list, required: false, default: [] }
+      - { name: body, label: Body, widget: markdown }
+
+  - name: candidates
+    label: Candidates
+    label_singular: Candidate
+    folder: src/content/candidates
+    create: true
+    extension: md
+    format: frontmatter
+    slug: "{{slug}}"
+    sortable_fields: [level, order, name]
+    summary: "{{name}} — {{office}}"
+    fields:
+      - { name: name, label: Name, widget: string }
+      - { name: office, label: Office sought, widget: string, hint: "e.g. County Commissioner, House District 23" }
+      - { name: level, label: Level, widget: select, options: ["Wyoming Legislature", "Teton County", "Town of Jackson", "Statewide"] }
+      - { name: order, label: Order within level, widget: number, default: 50, value_type: int }
+      - { name: photo, label: Photo, widget: image, required: false, hint: "Square headshot works best. Confirm the candidate has rights to the photo." }
+      - { name: website, label: Campaign website, widget: string, required: false }
+      - { name: facebook, label: Facebook, widget: string, required: false }
+      - { name: instagram, label: Instagram, widget: string, required: false }
+      - { name: email, label: Email, widget: string, required: false }
+      - { name: phone, label: Phone, widget: string, required: false }
+      - { name: incumbent, label: Incumbent, widget: boolean, default: false }
+      - { name: election, label: Election, widget: string, default: "2026 General" }
+      - { name: active, label: Show on site, widget: boolean, default: true }
+      - { name: body, label: Notes (not shown), widget: markdown, required: false }
+
+  - name: pages
+    label: Pages
+    label_singular: Page
+    folder: src/content/pages
+    create: true
+    extension: md
+    format: frontmatter
+    slug: "{{slug}}"
+    sortable_fields: [section, order, title]
+    summary: "{{title}}{{archived | ternary(' (archived)', '')}}"
+    view_groups:
+      - { label: Section, field: section }
+      - { label: Archived, field: archived }
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: navTitle, label: Menu label, widget: string, required: false, hint: "Shorter name for the navigation menu" }
+      - { name: description, label: Subtitle / description, widget: string, required: false }
+      - { name: section, label: Menu section, widget: select, required: false, options: ["Get Involved", "Who We Are", "2026 Voter Info", "Support Us"] }
+      - { name: order, label: Order in menu, widget: number, required: false, value_type: int }
+      - { name: archived, label: Archived (hidden from site), widget: boolean, default: false }
+      - { name: embeds, label: Extras at the bottom, widget: select, multiple: true, required: false, options: [{ label: "E-mail signup form", value: mailchimp }, { label: "Donate button", value: donate }] }
+      - { name: updated, label: Last updated, widget: datetime, format: "YYYY-MM-DD", time_format: false, required: false }
+      - { name: squarespacePath, label: Old Squarespace URL, widget: hidden, required: false }
+      - { name: imported, label: Imported, widget: hidden, required: false }
+      - { name: body, label: Page content, widget: markdown }
+
+  - name: settings
+    label: Site settings
+    files:
+      - name: site
+        label: Contact & links
+        file: src/data/site.json
+        fields:
+          - { name: name, label: Organization name, widget: string }
+          - { name: shortName, label: Short name, widget: string }
+          - { name: tagline, label: Tagline, widget: string }
+          - { name: description, label: Site description, widget: text }
+          - { name: email, label: Email, widget: string }
+          - { name: phone, label: Phone, widget: string }
+          - { name: mailingAddress, label: Mailing address, widget: string }
+          - { name: streetAddress, label: Street address, widget: string }
+          - { name: facebook, label: Facebook URL, widget: string }
+          - { name: instagram, label: Instagram URL, widget: string }
+          - { name: donateUrl, label: ActBlue donate URL, widget: string }
+          - name: mailchimp
+            label: Mailchimp
+            widget: object
+            fields:
+              - { name: action, label: Form action URL, widget: string }
+              - { name: honeypot, label: Honeypot field name, widget: string }
+              - { name: archive, label: Campaign archive URL, widget: string }

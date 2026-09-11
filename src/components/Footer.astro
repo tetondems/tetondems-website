@@ -1,0 +1,39 @@
+---
+import site from '../data/site.json';
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="wrap cols">
+    <div>
+      <img class="logo" src="/images/brand/180425-sed-tetondems-logo-longform-alt-01.svg" alt="Teton County Democratic Party" width="260" height="120" />
+      <p class="tag">{site.tagline}</p>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <p>{site.mailingAddress}<br />{site.streetAddress}</p>
+      <p><a href={`mailto:${site.email}`}>{site.email}</a><br /><a href={`tel:+1${site.phone.replace(/\D/g, '')}`}>{site.phone}</a></p>
+    </div>
+    <div>
+      <h4>Follow</h4>
+      <p><a href={site.facebook} rel="noopener">Facebook</a><br /><a href={site.instagram} rel="noopener">Instagram</a></p>
+      <p><a href="/sign-up">Join our e‑mail list</a><br /><a href={site.donateUrl} rel="noopener">Donate on ActBlue</a></p>
+    </div>
+  </div>
+  <div class="wrap legal">
+    <p>Paid for by the Teton County Democratic Party, PO Box 337, Jackson, WY 83001. Not authorized by any candidate or candidate's committee.</p>
+    <p>© {year} {site.name}</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer { background: var(--dark-navy); color: #c9d3d9; margin-top: 64px; padding: 48px 0 24px; font-size: 0.95rem; }
+  .cols { display: grid; gap: 32px; grid-template-columns: 1.4fr 1fr 1fr; }
+  .logo { width: 220px; height: auto; }
+  .tag { font-family: var(--font-slab); font-style: italic; color: var(--electric); margin: 12px 0 0; font-size: 1.05rem; }
+  h4 { color: var(--white); font-family: var(--font-display); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.9rem; margin-bottom: 8px; }
+  p { margin: 0 0 10px; }
+  a { color: var(--white); }
+  a:hover { color: var(--electric); }
+  .legal { border-top: 1px solid rgba(255, 255, 255, 0.12); margin-top: 32px; padding-top: 18px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 0.82rem; color: #8fa0aa; }
+  @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+</style>

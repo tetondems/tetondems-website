@@ -1,0 +1,27 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { formatPostDate } from '../../lib/dates';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('news');
+  return posts.map((post) => ({ params: { id: post.id }, props: { post } }));
+}
+const { post } = Astro.props;
+const { Content } = await render(post);
+const { title, date, image, excerpt, categories } = post.data;
+---
+<Base title={title} description={excerpt} image={image}>
+  <div class="wrap">
+    <header class="page-head">
+      <p class="eyebrow">{formatPostDate(date)}{categories.length > 0 && ` · ${categories.join(', ')}`}</p>
+      <h1>{title}</h1>
+    </header>
+    <article class="prose"><Content /></article>
+    <p class="back"><a href="/news">← All news</a></p>
+  </div>
+</Base>
+
+<style>
+  .back { margin-top: 48px; }
+</style>

@@ -1,0 +1,23 @@
+{
+  "name": "tetondems-website",
+  "private": true,
+  "type": "module",
+  "version": "0.1.0",
+  "description": "Teton County Democratic Party website — tetondems.org",
+  "scripts": {
+    "dev": "astro dev",
+    "prebuild": "node scripts/build-redirects.mjs",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.2.1",
+    "astro": "^5.13.0"
+  },
+  "devDependencies": {
+    "js-yaml": "^4.1.0",
+    "turndown": "^7.2.0",
+    "turndown-plugin-gfm": "^1.0.2"
+  }
+}

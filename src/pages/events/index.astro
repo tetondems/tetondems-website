@@ -1,0 +1,45 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import EventCard from '../../components/EventCard.astro';
+import { formatEventDate } from '../../lib/dates';
+
+const now = new Date();
+const all = await getCollection('events');
+const upcoming = all.filter((e) => (e.data.end ?? e.data.start) >= now).sort((a, b) => a.data.start.getTime() - b.data.start.getTime());
+const past = all.filter((e) => (e.data.end ?? e.data.start) < now).sort((a, b) => b.data.start.getTime() - a.data.start.getTime()).slice(0, 24);
+---
+<Base title="Upcoming Events" description="Meetings, volunteer shifts, forums, and celebrations with the Teton County Democrats.">
+  <div class="wrap">
+    <header class="page-head">
+      <p class="eyebrow">Teton Dems</p>
+      <h1>Upcoming events</h1>
+      <p class="lede">Everyone is welcome. Bring a friend.</p>
+    </header>
+    {upcoming.length ? (
+      <div class="grid">{upcoming.map((event) => <EventCard event={event} />)}</div>
+    ) : (
+      <p class="muted">Nothing scheduled yet. <a href="/sign-up">Join the e‑mail list</a> to hear about the next one.</p>
+    )}
+
+    <h2 class="past-head">Past events</h2>
+    <ul class="past">
+      {past.map((e) => (
+        <li>
+          <span class="when">{formatEventDate(e.data.start)}</span>
+          <a href={`/events/${e.id}`}>{e.data.title}</a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</Base>
+
+<style>
+  .past-head { margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--light-grey); font-size: 1.5rem; }
+  .past { list-style: none; padding: 0; margin: 16px 0 0; columns: 2; column-gap: 40px; }
+  .past li { break-inside: avoid; padding: 8px 0; border-bottom: 1px solid var(--pale); display: flex; gap: 12px; align-items: baseline; }
+  .past .when { font-family: var(--font-display); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--cool-grey); font-size: 0.85rem; min-width: 11ch; font-variant-numeric: tabular-nums; }
+  .past a { color: var(--dark-navy); text-decoration: none; }
+  .past a:hover { color: var(--electric-ink); }
+  @media (max-width: 700px) { .past { columns: 1; } }
+</style>

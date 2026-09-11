@@ -1,0 +1,39 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import MailchimpForm from '../components/MailchimpForm.astro';
+import { formatPostDate } from '../lib/dates';
+
+export async function getStaticPaths() {
+  const pages = await getCollection('pages', ({ data }) => !data.archived);
+  return pages.map((page) => ({ params: { slug: page.id }, props: { page } }));
+}
+const { page } = Astro.props;
+const { Content } = await render(page);
+const { title, description, section, embeds, updated } = page.data;
+---
+<Base title={title} description={description}>
+  <div class="wrap">
+    <header class="page-head">
+      {section && <p class="eyebrow">{section}</p>}
+      <h1>{title}</h1>
+      {description && description !== title && <p class="lede">{description}</p>}
+    </header>
+    <div class="layout">
+      <article class="prose">
+        <Content />
+        {embeds.includes('mailchimp') && <div class="embed"><MailchimpForm /></div>}
+      </article>
+      <aside>
+        <slot name="aside" />
+      </aside>
+    </div>
+    {updated && <p class="muted updated">Last updated {formatPostDate(updated)}</p>}
+  </div>
+</Base>
+
+<style>
+  .layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .embed { margin-top: 2.5em; }
+  .updated { font-size: 0.85rem; margin-top: 48px; }
+</style>

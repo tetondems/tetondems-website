@@ -1,0 +1,48 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { formatLongDate, formatTimeRange } from '../../lib/dates';
+
+export async function getStaticPaths() {
+  const events = await getCollection('events');
+  return events.map((event) => ({ params: { id: event.id }, props: { event } }));
+}
+const { event } = Astro.props;
+const { Content } = await render(event);
+const { title, start, end, location, image, excerpt, link } = event.data;
+const isPast = (end ?? start) < new Date();
+const mapUrl = location?.url ?? (location?.address ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent([location.name, location.address].filter(Boolean).join(', '))}` : undefined);
+const pad = (n: number) => String(n).padStart(2, '0');
+const ics = (d: Date) => `${d.getUTCFullYear()}${pad(d.getUTCMonth() + 1)}${pad(d.getUTCDate())}T${pad(d.getUTCHours())}${pad(d.getUTCMinutes())}00Z`;
+const gcal = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${ics(start)}/${ics(end ?? new Date(start.getTime() + 3600e3))}&location=${encodeURIComponent([location?.name, location?.address].filter(Boolean).join(', '))}&details=${encodeURIComponent(excerpt ?? '')}`;
+---
+<Base title={title} description={excerpt} image={image} noindex={isPast}>
+  <div class="wrap">
+    <header class="page-head">
+      <p class="eyebrow">{isPast ? 'Past event' : 'Upcoming event'}</p>
+      <h1>{title}</h1>
+      <dl class="facts">
+        <div><dt>When</dt><dd>{formatLongDate(start)}<br />{formatTimeRange(start, end)} Mountain</dd></div>
+        {location?.name && <div><dt>Where</dt><dd>{location.name}{location.address && <><br />{location.address}</>}{mapUrl && <><br /><a href={mapUrl} rel="noopener">Map</a></>}</dd></div>}
+      </dl>
+      {!isPast && <p class="add"><a class="button ghost" href={gcal} rel="noopener">Add to Google Calendar</a>{link && <a class="button electric" href={link} rel="noopener">RSVP / details</a>}</p>}
+    </header>
+    <div class="body">
+      {image && <img class="poster" src={image} alt="" />}
+      <article class="prose"><Content /></article>
+    </div>
+    <p class="back"><a href="/events">← All events</a></p>
+  </div>
+</Base>
+
+<style>
+  .facts { display: flex; gap: 40px; flex-wrap: wrap; margin: 20px 0 0; }
+  .facts div { display: grid; gap: 2px; }
+  dt { font-family: var(--font-display); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.8rem; color: var(--electric-ink); }
+  dd { margin: 0; font-size: 1.05rem; }
+  .add { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 0; }
+  .body { display: grid; gap: 32px; grid-template-columns: minmax(0, 1fr) 340px; align-items: start; }
+  .poster { order: 2; border-radius: 4px; }
+  .back { margin-top: 48px; }
+  @media (max-width: 760px) { .body { grid-template-columns: 1fr; } .poster { order: 0; } }
+</style>

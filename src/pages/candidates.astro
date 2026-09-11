@@ -1,0 +1,71 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+
+const LEVELS = ['Wyoming Legislature', 'Teton County', 'Town of Jackson', 'Statewide'] as const;
+const all = (await getCollection('candidates', ({ data }) => data.active)).sort((a, b) => a.data.order - b.data.order || a.data.name.localeCompare(b.data.name));
+const groups = LEVELS.map((level) => ({ level, list: all.filter((c) => c.data.level === level) })).filter((g) => g.list.length);
+const notes: Record<string, string> = {
+  'Town of Jackson': 'Town Council and Mayor are nonpartisan races. Candidates listed here asked to be included.',
+};
+const initials = (name: string) => name.split(/\s+/).map((w) => w[0]).slice(0, 2).join('');
+---
+<Base title="Candidates & Campaigns" description="Democratic candidates on the Teton County ballot in the November 3, 2026 general election, with links to their campaigns.">
+  <div class="wrap">
+    <header class="page-head">
+      <p class="eyebrow">2026 Voter Info</p>
+      <h1>Candidates &amp; campaigns</h1>
+      <p class="lede">Democrats on the Teton County ballot for the <strong>November 3, 2026</strong> general election. Click through to learn where they stand and how to help.</p>
+    </header>
+
+    {groups.map(({ level, list }) => (
+      <section class="level">
+        <h2>{level}</h2>
+        {notes[level] && <p class="muted note">{notes[level]}</p>}
+        <div class="grid">
+          {list.map(({ data: c }) => (
+            <article class="card cand">
+              <div class="photo">
+                {c.photo ? <img src={c.photo} alt={`${c.name}`} loading="lazy" /> : <span class="initials" aria-hidden="true">{initials(c.name)}</span>}
+              </div>
+              <div class="body">
+                <p class="office">{c.office}{c.incumbent && <span class="inc"> · Incumbent</span>}</p>
+                <h3>{c.website ? <a href={c.website} rel="noopener">{c.name}</a> : c.name}</h3>
+                <p class="links">
+                  {c.website && <a href={c.website} rel="noopener">Website</a>}
+                  {c.facebook && <a href={c.facebook} rel="noopener">Facebook</a>}
+                  {c.instagram && <a href={c.instagram} rel="noopener">Instagram</a>}
+                  {c.email && <a href={`mailto:${c.email}`}>Email</a>}
+                  {c.phone && <a href={`tel:+1${c.phone.replace(/\D/g, '')}`}>{c.phone}</a>}
+                </p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+    ))}
+
+    <section class="statewide">
+      <h2>Democrats around the state</h2>
+      <p>Help elect Democrats to the Wyoming Legislature beyond Teton County through the <a href="https://secure.actblue.com/donate/wyolegdems-power-and-candidates" rel="noopener">Wyoming Legislative Democrats fund on ActBlue</a>.</p>
+      <p>For every race on your ballot, including statewide offices, see <a href="https://ballotpedia.org/Wyoming_elections,_2026" rel="noopener">Ballotpedia's Wyoming 2026 election guide</a> and the <a href="https://www.tetoncountywy.gov/268/Elections" rel="noopener">Teton County Clerk's election page</a>.</p>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .level { margin-bottom: 48px; }
+  .level h2 { margin-bottom: 8px; }
+  .note { margin: 0 0 16px; font-size: 0.95rem; }
+  .cand { flex-direction: row; align-items: stretch; }
+  .photo { flex: 0 0 120px; background: var(--pale); display: grid; place-items: center; }
+  .photo img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1; }
+  .initials { font-family: var(--font-display); font-weight: 800; font-size: 2rem; color: var(--electric-ink); }
+  .cand .body { padding: 14px 16px; justify-content: center; }
+  .office { font-family: var(--font-display); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.8rem; color: var(--electric-ink); margin: 0; }
+  .inc { color: var(--cool-grey); }
+  .links { display: flex; gap: 10px; flex-wrap: wrap; margin: 0; font-size: 0.9rem; }
+  .statewide { padding: 24px; background: var(--pale); border-left: 4px solid var(--electric); max-width: var(--measure); }
+  .statewide h2 { font-size: 1.3rem; margin-bottom: 6px; }
+  .statewide p { margin: 0; }
+</style>

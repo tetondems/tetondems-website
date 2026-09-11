@@ -1,0 +1,18 @@
+{
+  "name": "Teton County Democratic Party",
+  "shortName": "Teton Dems",
+  "tagline": "The Party of Opportunities",
+  "description": "The Teton County Democratic Party works together for the social, environmental, and economic well-being of our community through education, advocacy, and elections.",
+  "email": "info@tetondems.org",
+  "phone": "(307) 264-0240",
+  "mailingAddress": "PO Box 337, Jackson, WY 83001",
+  "streetAddress": "432 W. Pearl St., Jackson, WY 83001",
+  "facebook": "https://www.facebook.com/tetondems/",
+  "instagram": "https://www.instagram.com/tetonwydems/",
+  "donateUrl": "https://secure.actblue.com/contribute/page/tetondems?refcode=website&recurring=1",
+  "mailchimp": {
+    "action": "https://tetondems.us13.list-manage.com/subscribe/post?u=dcad50e134d0d8f88e0c9f3da&id=16de9de15d&f_id=00657ce9f0",
+    "honeypot": "b_dcad50e134d0d8f88e0c9f3da_16de9de15d",
+    "archive": "http://us13.campaign-archive1.com/home/?u=dcad50e134d0d8f88e0c9f3da&id=16de9de15d"
+  }
+}

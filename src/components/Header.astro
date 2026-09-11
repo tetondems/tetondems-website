@@ -1,0 +1,110 @@
+---
+import { getCollection } from 'astro:content';
+import site from '../data/site.json';
+
+const pages = (await getCollection('pages', ({ data }) => !data.archived && data.section))
+  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+
+const groups = [
+  { label: 'Upcoming Events', href: '/events' },
+  { label: 'Get Involved', items: pages.filter((p) => p.data.section === 'Get Involved') },
+  { label: 'Who We Are', items: pages.filter((p) => p.data.section === 'Who We Are') },
+  { label: '2026 Voter Info', items: pages.filter((p) => p.data.section === '2026 Voter Info'), extra: { title: 'Candidates & Campaigns', href: '/candidates' } },
+  { label: 'News', href: '/news' },
+];
+const current = Astro.url.pathname;
+---
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="/" aria-label={`${site.name} home`}>
+      <img src="/images/brand/180425-sed-tetondems-logo-location-01.svg" alt="Teton Dems, Jackson Hole, Wyoming" width="220" height="64" />
+    </a>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="site-nav">
+      <span class="sr-only">Menu</span>
+      <span class="bars" aria-hidden="true"></span>
+    </button>
+    <nav id="site-nav" class="nav" aria-label="Main">
+      <ul>
+        {groups.map((g) =>
+          g.href ? (
+            <li><a href={g.href} aria-current={current.startsWith(g.href) ? 'page' : undefined}>{g.label}</a></li>
+          ) : (
+            <li class="has-menu">
+              <button type="button" aria-expanded="false">{g.label}<span class="caret" aria-hidden="true"></span></button>
+              <ul class="menu">
+                {g.extra && <li><a href={g.extra.href} aria-current={current === g.extra.href ? 'page' : undefined}>{g.extra.title}</a></li>}
+                {g.items!.map((p) => (
+                  <li><a href={`/${p.id}`} aria-current={current === `/${p.id}` ? 'page' : undefined}>{p.data.navTitle ?? p.data.title}</a></li>
+                ))}
+              </ul>
+            </li>
+          ),
+        )}
+        <li class="cta"><a class="button red" href={site.donateUrl} rel="noopener">Donate</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header { background: var(--white); border-bottom: 1px solid var(--light-grey); position: relative; z-index: 20; }
+  .bar { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 14px 0; }
+  .brand img { height: 56px; width: auto; }
+  .nav ul { list-style: none; margin: 0; padding: 0; }
+  .nav > ul { display: flex; align-items: center; gap: 4px; }
+  .nav a, .nav button {
+    font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; letter-spacing: 0.05em; text-transform: uppercase;
+    color: var(--dark-navy); text-decoration: none; background: none; border: 0; padding: 10px 12px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; line-height: 1;
+  }
+  .nav a:hover, .nav button:hover, .nav a[aria-current="page"] { color: var(--electric-ink); }
+  .nav a[aria-current="page"] { box-shadow: inset 0 -3px 0 var(--electric); }
+  .caret { width: 7px; height: 7px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: translateY(-2px) rotate(45deg); }
+  .has-menu { position: relative; }
+  .nav .menu { display: none; position: absolute; top: 100%; left: 0; min-width: 240px; background: var(--white); border: 1px solid var(--light-grey); border-top: 3px solid var(--electric); box-shadow: 0 10px 24px rgba(21, 35, 41, 0.12); flex-direction: column; align-items: stretch; padding: 6px 0; }
+  .nav .has-menu:hover > .menu, .nav .has-menu:focus-within > .menu, .nav .has-menu[data-open] > .menu { display: flex; }
+  .menu a { display: block; padding: 9px 16px; font-size: 0.98rem; letter-spacing: 0.03em; white-space: nowrap; }
+  .menu a[aria-current="page"] { box-shadow: inset 3px 0 0 var(--electric); }
+  .cta { margin-left: 8px; }
+  .cta .button { padding: 0.55em 1.1em; font-size: 0.98rem; }
+  .menu-toggle { display: none; background: none; border: 2px solid var(--dark-navy); border-radius: 3px; width: 44px; height: 40px; place-items: center; cursor: pointer; }
+  .bars, .bars::before, .bars::after { display: block; width: 20px; height: 2px; background: var(--dark-navy); position: relative; content: ""; }
+  .bars::before { position: absolute; top: -6px; }
+  .bars::after { position: absolute; top: 6px; }
+
+  @media (max-width: 900px) {
+    .menu-toggle { display: grid; }
+    .nav { display: none; position: absolute; left: 0; right: 0; top: 100%; background: var(--white); border-bottom: 1px solid var(--light-grey); box-shadow: 0 12px 24px rgba(21, 35, 41, 0.12); }
+    .nav[data-open] { display: block; }
+    .nav > ul { flex-direction: column; align-items: stretch; gap: 0; padding: 8px var(--gutter) 16px; }
+    .nav > ul > li { border-top: 1px solid var(--pale); }
+    .nav button { width: 100%; justify-content: space-between; padding: 14px 4px; }
+    .nav > ul > li > a { display: block; padding: 14px 4px; }
+    .nav .menu { position: static; display: none; border: 0; box-shadow: none; padding: 0 0 8px 12px; }
+    .nav .has-menu:hover > .menu { display: none; }
+    .nav .has-menu[data-open] > .menu, .nav .has-menu:focus-within > .menu { display: flex; }
+    .cta { margin: 12px 0 0; }
+  }
+</style>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
+  const nav = document.getElementById('site-nav');
+  toggle?.addEventListener('click', () => {
+    const open = nav?.hasAttribute('data-open');
+    if (open) nav?.removeAttribute('data-open'); else nav?.setAttribute('data-open', '');
+    toggle.setAttribute('aria-expanded', String(!open));
+  });
+  document.querySelectorAll<HTMLButtonElement>('.has-menu > button').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const li = btn.parentElement!;
+      const open = li.hasAttribute('data-open');
+      document.querySelectorAll('.has-menu[data-open]').forEach((el) => { el.removeAttribute('data-open'); el.querySelector('button')?.setAttribute('aria-expanded', 'false'); });
+      if (!open) { li.setAttribute('data-open', ''); btn.setAttribute('aria-expanded', 'true'); }
+    });
+  });
+  document.addEventListener('click', (e) => {
+    if (!(e.target as Element).closest('.has-menu')) {
+      document.querySelectorAll('.has-menu[data-open]').forEach((el) => { el.removeAttribute('data-open'); el.querySelector('button')?.setAttribute('aria-expanded', 'false'); });
+    }
+  });
+</script>
