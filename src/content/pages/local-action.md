@@ -4,6 +4,7 @@ navTitle: Local Action
 section: Get Involved
 order: 1
 archived: false
+hero: /images/site/tetons-barn.jpg
 squarespacePath: /local-action
 updated: "2026-04-15"
 imported: true

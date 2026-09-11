@@ -110,6 +110,7 @@ collections:
       - { name: section, label: Menu section, widget: select, required: false, options: ["Get Involved", "Who We Are", "2026 Voter Info", "Support Us"] }
       - { name: order, label: Order in menu, widget: number, required: false, value_type: int }
       - { name: archived, label: Archived (hidden from site), widget: boolean, default: false }
+      - { name: hero, label: Banner photo, widget: image, required: false, hint: "Optional wide photo behind the page title" }
       - { name: embeds, label: Extras at the bottom, widget: select, multiple: true, required: false, options: [{ label: "E-mail signup form", value: mailchimp }, { label: "Donate button", value: donate }] }
       - { name: updated, label: Last updated, widget: datetime, format: "YYYY-MM-DD", time_format: false, required: false }
       - { name: squarespacePath, label: Old Squarespace URL, widget: hidden, required: false }

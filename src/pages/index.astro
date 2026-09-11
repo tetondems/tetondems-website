@@ -7,8 +7,11 @@ import site from '../data/site.json';
 import { formatPostDate } from '../lib/dates';
 
 const now = new Date();
+// Recurring events (same title) show only their next occurrence here.
+const seen = new Set<string>();
 const upcoming = (await getCollection('events', ({ data }) => (data.end ?? data.start) >= now))
   .sort((a, b) => a.data.start.getTime() - b.data.start.getTime())
+  .filter((e) => { const k = e.data.title.trim().toLowerCase(); if (seen.has(k)) return false; seen.add(k); return true; })
   .slice(0, 3);
 const posts = (await getCollection('news')).sort((a, b) => b.data.date.getTime() - a.data.date.getTime()).slice(0, 3);
 const candidates = (await getCollection('candidates', ({ data }) => data.active)).sort((a, b) => a.data.order - b.data.order);
@@ -44,7 +47,7 @@ const ways = [
         <a href="/events">All events →</a>
       </div>
       {upcoming.length ? (
-        <div class="grid">{upcoming.map((event) => <EventCard event={event} />)}</div>
+        <div class:list={['grid', { single: upcoming.length === 1 }]}>{upcoming.map((event) => <EventCard event={event} />)}</div>
       ) : (
         <p class="muted">No events on the calendar right now. Join the e‑mail list and we'll let you know what's next.</p>
       )}

@@ -5,6 +5,7 @@ description: 2024 Democratic Convention
 section: Get Involved
 order: 4
 archived: false
+hero: /images/site/tetons-barn.jpg
 squarespacePath: /apply-for-pco
 updated: "2026-04-28"
 imported: false

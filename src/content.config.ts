@@ -13,6 +13,7 @@ const pages = defineCollection({
     order: z.number().optional(),
     archived: z.boolean().default(false),
     embeds: z.array(z.enum(['mailchimp', 'donate'])).default([]),
+    hero: z.string().optional(),
     squarespacePath: z.string().optional(),
     updated: z.coerce.date().optional(),
     imported: z.boolean().optional(),

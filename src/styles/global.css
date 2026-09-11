@@ -96,6 +96,13 @@ h4 { font-family: var(--font-slab); font-size: 1.1rem; font-weight: 600; }
 .card h3 a:hover { color: var(--electric-ink); }
 .card .when { font-family: var(--font-display); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--electric-ink); font-size: 0.95rem; font-variant-numeric: tabular-nums; }
 .card .where, .card .excerpt { color: var(--dark-grey); font-size: 0.95rem; }
+/* A single card (e.g. one upcoming event) becomes a wide feature instead of a lonely column */
+.grid.single { grid-template-columns: 1fr; }
+.grid.single .card { flex-direction: row; }
+.grid.single .card > a.cover { flex: 0 0 44%; aspect-ratio: auto; min-height: 260px; }
+.grid.single .card .body { padding: 28px 32px; justify-content: center; gap: 12px; }
+.grid.single .card h3 { font-size: 1.6rem; }
+@media (max-width: 700px) { .grid.single .card { flex-direction: column; } .grid.single .card > a.cover { aspect-ratio: 16 / 10; min-height: 0; } }
 
 .page-head { padding: 48px 0 24px; border-bottom: 4px solid var(--electric); margin-bottom: 40px; position: relative; }
 .page-head::after { content: ""; position: absolute; right: 0; bottom: 12px; width: 96px; height: 78px; background: url('/images/brand/mark.svg') no-repeat right bottom / contain; opacity: 0.14; pointer-events: none; }
