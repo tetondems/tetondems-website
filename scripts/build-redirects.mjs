@@ -13,14 +13,10 @@ const lines = [
   '# Old Squarespace URLs -> new site.',
   '/home /about-teton-dems 301',
   '/news-1 /news 301',
-  '/news-1/* /news 301',
   '/calendar-of-events /events 301',
-  '/events/* /events 301',
   '/candidates-campaigns /candidates 301',
   '/2024-teton-county-candidates /candidates 301',
   '/new-products /support-us 301',
-  '/new-products/* /support-us 301',
-  '/s/* /files/:splat 301',
 ];
 
 function frontmatter(file) {
@@ -48,7 +44,8 @@ for (const dir of ['events', 'news']) {
     if (fm.squarespacePath) lines.push(`${fm.squarespacePath} /${dir}/${file.replace(/\.md$/, '')} 301`);
   }
 }
-// Cloudflare evaluates specific rules before splats regardless of order, but keep the file tidy.
+// Wildcards last: Cloudflare takes the first matching rule, so exact rules must come first.
+lines.push('/news-1/* /news 301', '/events/* /events 301', '/new-products/* /support-us 301', '/s/* /files/:splat 301');
 const out = lines.filter((l, i, a) => a.indexOf(l) === i).join('\n') + '\n';
 fs.writeFileSync(path.join(root, 'public/_redirects'), out);
 console.log(`wrote public/_redirects (${lines.length} rules)`);

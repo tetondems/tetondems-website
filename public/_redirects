@@ -2,14 +2,10 @@
 # Old Squarespace URLs -> new site.
 /home /about-teton-dems 301
 /news-1 /news 301
-/news-1/* /news 301
 /calendar-of-events /events 301
-/events/* /events 301
 /candidates-campaigns /candidates 301
 /2024-teton-county-candidates /candidates 301
 /new-products /support-us 301
-/new-products/* /support-us 301
-/s/* /files/:splat 301
 /2022-county-convention / 301
 /2016caucus / 301
 /surrogate / 301
@@ -61,3 +57,7 @@
 /events/2025/5/12/volunteer-at-the-seinor-center-3megb-6dhsb-4fnmj-cx9yx-ynydc-m5n8z-x2kk4-j66wb-as6dt /events/2026-10-16-volunteer-at-the-senior-center 301
 /events/2025/5/12/volunteer-at-the-seinor-center-3megb-6dhsb-4fnmj-cx9yx-ynydc-m5n8z-x2kk4-j66wb-as6dt-a745t /events/2026-11-20-volunteer-at-the-senior-center 301
 /events/2025/5/12/volunteer-at-the-seinor-center-3megb-6dhsb-4fnmj-cx9yx-ynydc-m5n8z-x2kk4-j66wb-as6dt-a745t-47pak /events/2026-12-18-volunteer-at-the-senior-center 301
+/news-1/* /news 301
+/events/* /events 301
+/new-products/* /support-us 301
+/s/* /files/:splat 301
