@@ -19,7 +19,7 @@ In depth analysis please see [our platform](/2026-platform).
 **Chair:** Annette Osnos
 **Vice Chair:** Orion Bellorado
 **Treasurer:** Maggie Davis
-**Secretary:** Julian Hass
+**Secretary:** Julien Hass
 
 
 **State Committeepeople:** Mike Yin & Maggie Hunt
@@ -39,7 +39,7 @@ Precinct committeemen and committeewomen shall be Democrats registered and resid
 #### Precinct 1-1
 2 open seats – one male and one female needed
 
-**Precinct 1-2**
+#### Precinct 1-2
 
 Melissa Turley
 
@@ -57,20 +57,19 @@ Theo Puschak
 
 Lea Bonnecaze
 
-#### **
-Precinct 1-3**
+#### Precinct 1-3
 
 Emma Hill
 
 Jim Hunt
 
-**Precinct 1-4**
+#### Precinct 1-4
 
 Pat Chadwick
 
 Caitlin Shea
 
-**Precinct 1-5**
+#### Precinct 1-5
 
 Noah Osnos
 
@@ -82,26 +81,25 @@ Sandy Buckstaff
 
 4 open seats – three males and one female needed
 
-#### **
-Precinct 1-6**
+#### Precinct 1-6
 
 Sarah Adams
 
 3 open seats – two males and one female needed
 
-**Precinct 1-7**
+#### Precinct 1-7
 
 Charles (Chuck) Rhea
 
 1 open seat – one female needed
 
-**Precinct 1-10**
+#### Precinct 1-10
 
 Mike Welch
 
 Robyn Houser Lunsford
 
-**Precinct 1-11**
+#### Precinct 1-11
 
 Luther Propst
 
@@ -112,23 +110,23 @@ Seadar Rose Davis
 
 1 open seats – one male needed
 
-**Precinct 2-1**
+#### Precinct 2-1
 
 4 open seats – two males and two females needed
 
-**Precinct 3-1**
+#### Precinct 3-1
 
 Penelope “Penny” Maldonado
 
 1 open seat – one male needed
 
-**Precinct 4-1**
+#### Precinct 4-1
 
 Dail E. Barbour
 
 Steve Grossman
 
-**Precinct 4-2**
+#### Precinct 4-2
 
 John Carey
 
@@ -138,17 +136,16 @@ Olaus Linn
 
 Jenelle Linn
 
-#### **
-Precinct 4-3**
+#### Precinct 4-3
 
 Claire Fuller
 
 1 open seats – one male needed
 
-**Precinct 4-4**
+#### Precinct 4-4
 
 Carol Harkness
 
-**Precinct 5-1**
+#### Precinct 5-1
 
 2 open seats - one male and one female needed

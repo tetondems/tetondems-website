@@ -1,12 +1,10 @@
 ---
 title: General Election
 navTitle: General Election
-section: 2026 Voter Info
-order: 5
-archived: false
+archived: true
 squarespacePath: /general-election-info
 updated: "2026-04-13"
-imported: true
+imported: false
 ---
 
 ## General Election

@@ -7,20 +7,20 @@ archived: false
 hero: /images/site/tetons-barn.jpg
 squarespacePath: /state-action
 updated: "2026-04-15"
-imported: true
+imported: false
 ---
 
 ## Easy Steps Everyone can Take
 
 -   Vote in State Elections (Legislature, Governor, Secretary of state)
 
--   Track Legislation (WY Legislature)
+-   Track legislation ([Wyoming Legislature](https://wyoleg.gov/))
 
 -   Contact Legislators ([State House & Senate](/elected-officials))
 
 -   Sign Petitions (Statewide initiatives/Referenda)
 
--   Donate Money ([State Democratic Party](https://secure.actblue.com/donate/wyodems?express_lane_other=true&refcode=express_lane_other), WY House & Senate Campaigns, Lobbing groups)
+-   Donate Money ([State Democratic Party](https://secure.actblue.com/donate/wyodems?express_lane_other=true&refcode=express_lane_other), WY House & Senate Campaigns, lobbying groups)
 
 
 * * *
@@ -40,6 +40,6 @@ imported: true
 
 ## Advanced tasks to advance real change
 
--   Lobby as a citizen (Coordinated, repeated issue advocacy
+-   Lobby as a citizen (coordinated, repeated issue advocacy)
 
 -   Run for State Office! (WY House, Senate, State wide office)

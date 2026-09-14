@@ -1,12 +1,10 @@
 ---
 title: Voter Regulations & Updates
 navTitle: Voter Regulations & Updates
-section: 2026 Voter Info
-order: 6
-archived: false
+archived: true
 squarespacePath: /voter-regulations-updates-3
 updated: "2026-04-13"
-imported: true
+imported: false
 ---
 
 ## Voter Regulations & Updates

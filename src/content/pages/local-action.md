@@ -7,7 +7,7 @@ archived: false
 hero: /images/site/tetons-barn.jpg
 squarespacePath: /local-action
 updated: "2026-04-15"
-imported: true
+imported: false
 ---
 
 ## Easy Steps Everyone Can Take
@@ -22,7 +22,7 @@ imported: true
 
     -   [Town Of Jackson Meetings](https://www.jacksonwy.gov/491/Agendas-Minutes)
 
-    -   Teton County Meetings
+    -   [Teton County Meetings](https://www.tetoncountywy.gov/AgendaCenter)
 
 -   Contact Local Officials ([Your elected officials](/elected-officials))
 
@@ -33,7 +33,7 @@ imported: true
 
 ## Moderate Steps to make greater change
 
--   Submit public comment (in person or written testimony
+-   Submit public comment (in person or written testimony)
 
 -   Support Local Ballot initiatives (SPET, Mill Levies, School Bonds, etc)
 
@@ -48,6 +48,6 @@ imported: true
 
 ## advanced steps for the Greatest Change
 
--   Serve on boards/commissions ([TOJH](https://www.jacksonwy.gov/274/Boards-Task-Forces), County,
+-   Serve on boards and commissions ([Town of Jackson](https://www.jacksonwy.gov/274/Boards-Committees), [Teton County](https://www.tetoncountywy.gov/284/Volunteer-Boards))
 
 -   Run for local office (Town Council, County Commission, School Board, County offices)

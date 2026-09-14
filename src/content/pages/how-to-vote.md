@@ -1,22 +1,22 @@
 ---
-title: Registration Guide
-navTitle: Registration Guide
+title: How to Vote
+navTitle: How to Vote
 section: 2026 Voter Info
 order: 2
 archived: false
 hero: /images/site/tetons-barn.jpg
 squarespacePath: /how-to-vote-teton-county-wy
 updated: "2026-04-28"
-imported: true
+imported: false
 ---
 
-## How to Vote in Teton County, WY, for the 2026 General Cycle
+## How to vote in Teton County
 
 In Teton County, Wyoming, you can register and vote on the same day!
 
 And, as long as you currently live in the county, you can register with an out-of-state license, or any of the forms of identification listed below.
 
-### What Are The Requirements?
+### Who can register
 
 -   Must be 18 years or older on election day
 
@@ -29,7 +29,7 @@ And, as long as you currently live in the county, you can register with an out-o
 -   Must not be a convicted felon (or if convicted, have had civil or voting rights restored) or adjudicated mentally incompetent
 
 
-### What do I need to register?
+### What to bring
 #### Valid ID documents
 #### One of any of the following:
 
@@ -54,7 +54,7 @@ And, as long as you currently live in the county, you can register with an out-o
 
 You must also know your physical and mailing address in Teton County, but do not need to bring proof of residence.
 
-### How to Register to Vote
+### How to register to vote
 
 There are three easy ways to register to vote in Teton County:
 
@@ -65,7 +65,7 @@ There are three easy ways to register to vote in Teton County:
 3.  As a last resort, you can register and vote on the November 3 election day at one of Teton County’s five vote centers.
 
 
-### How to Vote by Mail (ABsentee)
+### How to vote by mail (absentee)
 
 To receive an absentee ballot by mail, you must fill out and return a request form, which can be [found here](http://www.tetoncountywy.gov/DocumentCenter/View/5506/Request-for-Wyoming-Absentee-Ballot).
 
@@ -75,19 +75,18 @@ After you receive your ballot in the mail, return it as soon as possible. All ab
 
 If you received an absentee ballot in the mail and would rather return it in-person, there is a drop-off ballot box outside the Teton County Administration Building, where the Clerk’s Office is located.
 
-The safe and secure drop box for ballots, outside the Teton County Administration Building.
 
-### How to Vote Early in-Person
+### How to vote early in person
 
 You can also vote early (absentee) in-person at the Teton County Clerk’s Office from 8 a.m. to 5 p.m., Monday through Friday, through **Monday, November 2, 2026.**
 
-### Where to Vote on Election Day
+### Where to vote on Election Day
 
 There will be five Teton County vote centers open **from 7 a.m. to 7 p.m. on the November 3rd election day**. You can vote at any one of the centers below, regardless of your precinct.
 
 While it is recommended that you register prior to election day, you can still register and vote on November 3 at these locations.
 
--   [Teton County/Jackson Recreation Center](https://goo.gl/maps/RReb7JDVCUTmEkQk6), 155 E Gill Ave, Jackson, WY
+-   Teton County / Town of Jackson Recreation Center, 220 N. King St, Jackson, WY
 
 -   [Teton County Library](https://goo.gl/maps/NPNE7BNAE11vR9MT8), 125 Virginian Ln, Jackson, WY
 
@@ -101,10 +100,10 @@ While it is recommended that you register prior to election day, you can still r
 
 For any questions regarding registration and voting in Teton County, please contact the Clerk’s Office at [307-733-4430](tel:+13077334430) or [elections@tetoncountywy.gov](mailto:elections@tetoncountywy.gov).
 
-Support Our 2026 Democratic Candidates
+### Key dates
 
-From the state to the local level, the Teton Dems have great candidates fighting for reproductive rights and healthcare, affordable housing, education funding, climate action and other top issues in our [2024 platform](/2024-platform).
+Every deadline for the November 3 election is on one page: [Election dates & deadlines](/election-dates). The official source for all of it is the [Teton County Clerk's elections page](https://www.tetoncountywy.gov/268/Elections).
 
-**Note that candidate information will be updated in June, after the County Convention and Candidate Filing deadline.**
+### Who's on the ballot
 
-[Learn About Our Candidates](/2024-teton-county-candidates)
+See the [Democratic candidates](/candidates) running this year and the [2026 platform](/2026-platform) they stand behind.

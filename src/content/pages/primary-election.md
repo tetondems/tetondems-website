@@ -1,12 +1,10 @@
 ---
 title: Primary Election
 navTitle: Primary Election
-section: 2026 Voter Info
-order: 4
-archived: false
+archived: true
 squarespacePath: /primary-election
 updated: "2026-04-13"
-imported: true
+imported: false
 ---
 
 ## Primary Election
