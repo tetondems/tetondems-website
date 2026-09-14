@@ -118,15 +118,31 @@ OAuth app "Teton Dems site editor" owned by the `tetondems` org.
 
 ### 4. Domain cutover (after the November 3, 2026 election)
 
-1. In the Cloudflare Worker's settings, add the custom domains `tetondems.org` and
-   `www.tetondems.org`. Cloudflare shows the CNAME records to create.
-2. At GoDaddy (where the domain and DNS live), replace the Squarespace A records
-   and the `www` CNAME with the records Cloudflare gives you. Leave the Google
-   Workspace MX records alone.
-3. `public/_redirects` (Cloudflare reads it from the assets folder) already maps every old Squarespace URL to its new home,
-   so printed links and search results keep working.
-4. Before the March 8, 2027 renewal, turn off auto-renew in Squarespace and
+Workers custom domains require the domain's DNS to be hosted at Cloudflare, so
+the cutover moves DNS from GoDaddy to Cloudflare (free). The domain itself
+stays registered at GoDaddy.
+
+1. Cloudflare (party account) → **Add a domain** → `tetondems.org` → Free plan.
+   Cloudflare scans the existing records. Check that these came across:
+   the five Google `MX` records, the `TXT` SPF record (`v=spf1 …`), and the
+   `google-site-verification` TXT. The four Squarespace `A` records and the
+   `www` CNAME to `ext-sq.squarespace.com` can stay for now.
+2. GoDaddy → the domain → **Nameservers → Change → Enter my own**, paste the
+   two nameservers Cloudflare shows. Cloudflare emails when the zone is active
+   (usually within an hour).
+3. Cloudflare → DNS → delete the four Squarespace `A` records for
+   `tetondems.org` and the `www` CNAME.
+4. Cloudflare → Workers & Pages → `tetondems-website` → **Settings → Domains &
+   Routes → Add → Custom domain**: add `tetondems.org`, then `www.tetondems.org`.
+   Cloudflare creates the records and certificates itself.
+5. Check `https://tetondems.org`, `https://www.tetondems.org`, an old
+   Squarespace URL such as `/how-to-vote-teton-county-wy`, mail delivery to
+   info@, and editor sign-in at `/admin`.
+6. Before the March 8, 2027 renewal, turn off auto-renew in Squarespace and
    cancel the plan.
+
+Optional afterwards: add DKIM (Google Admin → Apps → Gmail → Authenticate
+email) and a DMARC record; neither existed on the old DNS.
 
 ## Scripts
 
