@@ -4,9 +4,11 @@ navTitle: Priorities
 description: 2016 Priorities
 section: Who We Are
 order: 4
-archived: false
+archived: true
+hero: ''
+embeds: []
+updated: 2016-02-18
 squarespacePath: /priorities
-updated: "2016-02-18"
 imported: true
 ---
 
