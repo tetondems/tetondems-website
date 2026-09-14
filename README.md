@@ -11,7 +11,7 @@ browser-based editor at `/admin` that saves straight to this repository.
 ## Editing the site (no code required)
 
 1. Go to <https://www.tetondems.org/admin> and sign in with GitHub.
-2. Pick **Events**, **News**, **Candidates**, or **Pages** in the left sidebar.
+2. Pick **Events**, **News**, **Candidates**, **Elected officials**, or **Pages** in the left sidebar.
 3. Make your change and click **Save**. The site rebuilds and publishes itself
    within about a minute.
 
@@ -60,10 +60,10 @@ npm run preview    # serves dist/ locally
 Layout:
 
 ```
-src/content/          Markdown content (pages, news, events, candidates)
+src/content/          Markdown content (pages, news, events, candidates, officials)
 src/content.config.ts Schemas for each collection
 src/data/site.json    Contact info, links, Mailchimp settings
-src/pages/            Routes: index, [...slug] (pages), events/, news/, candidates
+src/pages/            Routes: index, [...slug] (pages), events/, news/, candidates, elected-officials
 src/components/       Header, Footer, EventCard, MailchimpForm
 src/styles/global.css Brand tokens and shared styles
 public/admin/         Sveltia CMS (index.html + config.yml)

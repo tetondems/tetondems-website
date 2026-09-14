@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import PersonCard from '../components/PersonCard.astro';
 
 const LEVELS = ['Wyoming Legislature', 'Teton County', 'Town of Jackson', 'Statewide'] as const;
 const all = (await getCollection('candidates', ({ data }) => data.active)).sort((a, b) => a.data.order - b.data.order || a.data.name.localeCompare(b.data.name));
@@ -8,7 +9,7 @@ const groups = LEVELS.map((level) => ({ level, list: all.filter((c) => c.data.le
 const notes: Record<string, string> = {
   'Town of Jackson': 'Town Council and Mayor are nonpartisan races. Candidates listed here asked to be included.',
 };
-const initials = (name: string) => name.split(/\s+/).map((w) => w[0]).slice(0, 2).join('');
+const tel = (p: string) => `tel:+1${p.replace(/\D/g, '')}`;
 ---
 <Base title="Candidates & Campaigns" description="Democratic candidates on the Teton County ballot in the November 3, 2026 general election, with links to their campaigns.">
   <div class="wrap">
@@ -26,21 +27,20 @@ const initials = (name: string) => name.split(/\s+/).map((w) => w[0]).slice(0, 2
         </div>
         <div class="people">
           {list.map(({ data: c }) => (
-            <article class="person">
-              <a class="photo" href={c.website ?? '#'} rel="noopener" tabindex="-1" aria-hidden="true">
-                {c.photo ? <img src={c.photo} alt="" loading="lazy" /> : <span class="initials">{initials(c.name)}</span>}
-              </a>
-              <p class="office">{c.office}</p>
-              <h3>{c.website ? <a href={c.website} rel="noopener">{c.name}</a> : c.name}</h3>
-              {c.incumbent && <p class="inc">Incumbent</p>}
-              <p class="links">
-                {c.website && <a href={c.website} rel="noopener">Website</a>}
-                {c.facebook && <a href={c.facebook} rel="noopener">Facebook</a>}
-                {c.instagram && <a href={c.instagram} rel="noopener">Instagram</a>}
-                {c.email && <a href={`mailto:${c.email}`}>Email</a>}
-                {c.phone && <a href={`tel:+1${c.phone.replace(/\D/g, '')}`}>{c.phone}</a>}
-              </p>
-            </article>
+            <PersonCard
+              name={c.name}
+              role={c.office}
+              photo={c.photo}
+              href={c.website}
+              note={c.incumbent ? 'Incumbent' : undefined}
+              links={[
+                ...(c.website ? [{ label: 'Website', href: c.website }] : []),
+                ...(c.facebook ? [{ label: 'Facebook', href: c.facebook }] : []),
+                ...(c.instagram ? [{ label: 'Instagram', href: c.instagram }] : []),
+                ...(c.email ? [{ label: 'Email', href: `mailto:${c.email}` }] : []),
+                ...(c.phone ? [{ label: c.phone, href: tel(c.phone) }] : []),
+              ]}
+            />
           ))}
         </div>
       </section>
@@ -59,17 +59,6 @@ const initials = (name: string) => name.split(/\s+/).map((w) => w[0]).slice(0, 2
   .level .section-head { align-items: baseline; }
   .note { margin: 0; font-size: 0.95rem; max-width: 48ch; }
   .people { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 28px 24px; }
-  .person { display: flex; flex-direction: column; gap: 4px; }
-  .photo { display: block; aspect-ratio: 4 / 5; border-radius: 6px; overflow: hidden; background: linear-gradient(160deg, #e6f6fd, #cdeefb); margin-bottom: 10px; border-bottom: 4px solid var(--electric); }
-  .photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
-  .photo:hover img { transform: scale(1.03); transition: transform 0.3s; }
-  .initials { display: grid; place-items: center; height: 100%; font-family: var(--font-display); font-weight: 800; font-size: 3rem; color: var(--electric-ink); }
-  .office { font-family: var(--font-display); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; color: var(--electric-ink); margin: 0; }
-  .person h3 { font-size: 1.3rem; }
-  .person h3 a { color: var(--dark-navy); text-decoration: none; }
-  .person h3 a:hover { color: var(--electric-ink); }
-  .inc { margin: 0; font-size: 0.85rem; color: var(--cool-grey); }
-  .links { display: flex; gap: 10px; flex-wrap: wrap; margin: 4px 0 0; font-size: 0.9rem; }
   .statewide { padding: 24px 28px; background: var(--pale); border-left: 4px solid var(--electric); max-width: var(--measure); }
   .statewide h2 { font-size: 1.3rem; margin-bottom: 6px; }
   .statewide p { margin: 8px 0 0; }

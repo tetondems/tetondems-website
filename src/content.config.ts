@@ -71,4 +71,20 @@ const candidates = defineCollection({
   }),
 });
 
-export const collections = { pages, news, events, candidates };
+const officials = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/officials' }),
+  schema: z.object({
+    name: z.string(),
+    office: z.string(),
+    level: z.enum(['Wyoming Legislature', 'Teton County', 'Town of Jackson']),
+    order: z.number().default(50),
+    photo: z.string().optional(),
+    email: z.string().optional(),
+    phone: z.string().optional(),
+    contactUrl: z.string().optional(),
+    website: z.string().optional(),
+    active: z.boolean().default(true),
+  }),
+});
+
+export const collections = { pages, news, events, candidates, officials };

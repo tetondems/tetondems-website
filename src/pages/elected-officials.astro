@@ -1,0 +1,65 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import PersonCard from '../components/PersonCard.astro';
+
+const LEVELS = ['Wyoming Legislature', 'Teton County', 'Town of Jackson'] as const;
+const all = (await getCollection('officials', ({ data }) => data.active)).sort((a, b) => a.data.order - b.data.order || a.data.name.localeCompare(b.data.name));
+const groups = LEVELS.map((level) => ({ level, list: all.filter((o) => o.data.level === level) })).filter((g) => g.list.length);
+const intro: Record<string, string> = {
+  'Wyoming Legislature': 'Teton County’s delegation in Cheyenne. The Legislature meets each winter; these are the people to write about state bills.',
+  'Teton County': 'County offices are elected every two to four years and run the county’s budget, land use, courts, and public safety.',
+  'Town of Jackson': 'Town Council and Mayor are nonpartisan offices.',
+};
+const tel = (p: string) => `tel:+1${p.replace(/\D/g, '')}`;
+---
+<Base title="Elected Officials" description="Who represents Teton County in Cheyenne, at the county, and in the Town of Jackson, with how to reach each of them.">
+  <div class="wrap">
+    <header class="page-head">
+      <p class="eyebrow">Who We Are</p>
+      <h1>Elected officials</h1>
+      <p class="lede">Who represents you, and how to reach them. Contacting officials is one of the easiest and most effective things you can do. <a href="/local-action">See how →</a></p>
+    </header>
+
+    {groups.map(({ level, list }) => (
+      <section class="level">
+        <div class="section-head">
+          <h2>{level}</h2>
+          {intro[level] && <p class="muted note">{intro[level]}</p>}
+        </div>
+        <div class="people">
+          {list.map(({ data: o }) => (
+            <PersonCard
+              name={o.name}
+              role={o.office}
+              photo={o.photo}
+              href={o.website}
+              links={[
+                ...(o.email ? [{ label: 'Email', href: `mailto:${o.email}` }] : []),
+                ...(o.contactUrl ? [{ label: 'Contact form', href: o.contactUrl }] : []),
+                ...(o.phone ? [{ label: o.phone, href: tel(o.phone) }] : []),
+                ...(o.website ? [{ label: 'Profile', href: o.website }] : []),
+              ]}
+            />
+          ))}
+        </div>
+      </section>
+    ))}
+
+    <section class="boards">
+      <h2>Boards and committees</h2>
+      <p>Many decisions are made by appointed boards: planning, housing, parks, the library, and more. Serving on one is a real way to shape the community.</p>
+      <p><a href="https://www.jacksonwy.gov/274/Boards-Committees" rel="noopener">Town of Jackson boards and members</a> · <a href="https://www.tetoncountywy.gov/159/Boards-Commissions" rel="noopener">Teton County boards and commissions</a></p>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .level { margin-bottom: 56px; }
+  .level .section-head { align-items: baseline; }
+  .note { margin: 0; font-size: 0.95rem; max-width: 52ch; }
+  .people { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 28px 24px; }
+  .boards { padding: 24px 28px; background: var(--pale); border-left: 4px solid var(--electric); max-width: var(--measure); }
+  .boards h2 { font-size: 1.3rem; margin-bottom: 6px; }
+  .boards p { margin: 8px 0 0; }
+</style>

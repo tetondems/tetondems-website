@@ -5,11 +5,19 @@ import site from '../data/site.json';
 const pages = (await getCollection('pages', ({ data }) => !data.archived && data.section))
   .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 
+// Built-in pages that live alongside the CMS pages in a menu section.
+const builtIn: Record<string, { title: string; href: string; order: number }[]> = {
+  'Who We Are': [{ title: 'Elected Officials', href: '/elected-officials', order: 2 }],
+  '2026 Voter Info': [{ title: 'Candidates & Campaigns', href: '/candidates', order: 1 }],
+};
+const section = (name: string) =>
+  [...pages.filter((p) => p.data.section === name).map((p) => ({ title: p.data.navTitle ?? p.data.title, href: `/${p.id}`, order: p.data.order ?? 99 })), ...(builtIn[name] ?? [])]
+    .sort((a, b) => a.order - b.order || a.title.localeCompare(b.title));
 const groups = [
   { label: 'Upcoming Events', href: '/events' },
-  { label: 'Get Involved', items: pages.filter((p) => p.data.section === 'Get Involved') },
-  { label: 'Who We Are', items: pages.filter((p) => p.data.section === 'Who We Are') },
-  { label: '2026 Voter Info', items: pages.filter((p) => p.data.section === '2026 Voter Info'), extra: { title: 'Candidates & Campaigns', href: '/candidates' } },
+  { label: 'Get Involved', items: section('Get Involved') },
+  { label: 'Who We Are', items: section('Who We Are') },
+  { label: '2026 Voter Info', items: section('2026 Voter Info') },
   { label: 'News', href: '/news' },
 ];
 const current = Astro.url.pathname;
@@ -32,9 +40,8 @@ const current = Astro.url.pathname;
             <li class="has-menu">
               <button type="button" aria-expanded="false">{g.label}<span class="caret" aria-hidden="true"></span></button>
               <ul class="menu">
-                {g.extra && <li><a href={g.extra.href} aria-current={current === g.extra.href ? 'page' : undefined}>{g.extra.title}</a></li>}
                 {g.items!.map((p) => (
-                  <li><a href={`/${p.id}`} aria-current={current === `/${p.id}` ? 'page' : undefined}>{p.data.navTitle ?? p.data.title}</a></li>
+                  <li><a href={p.href} aria-current={current === p.href ? 'page' : undefined}>{p.title}</a></li>
                 ))}
               </ul>
             </li>

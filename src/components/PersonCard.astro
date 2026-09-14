@@ -1,0 +1,39 @@
+---
+/** One person in a people grid: candidates and elected officials share this. */
+interface Link { label: string; href: string }
+interface Props {
+  name: string;
+  role: string;
+  photo?: string;
+  note?: string;
+  href?: string;
+  links?: Link[];
+}
+const { name, role, photo, note, href, links = [] } = Astro.props;
+const initials = name.split(/\s+/).filter((w) => /^[A-Z]/.test(w)).map((w) => w[0]).slice(0, 2).join('');
+---
+<article class="person">
+  {href
+    ? <a class="photo" href={href} rel="noopener" tabindex="-1" aria-hidden="true">{photo ? <img src={photo} alt="" loading="lazy" /> : <span class="initials">{initials}</span>}</a>
+    : <div class="photo">{photo ? <img src={photo} alt="" loading="lazy" /> : <span class="initials">{initials}</span>}</div>}
+  <p class="office">{role}</p>
+  <h3>{href ? <a href={href} rel="noopener">{name}</a> : name}</h3>
+  {note && <p class="note">{note}</p>}
+  {links.length > 0 && (
+    <p class="links">{links.map((l) => <a href={l.href} rel={l.href.startsWith('http') ? 'noopener' : undefined}>{l.label}</a>)}</p>
+  )}
+</article>
+
+<style>
+  .person { display: flex; flex-direction: column; gap: 4px; }
+  .photo { display: block; aspect-ratio: 4 / 5; border-radius: 6px; overflow: hidden; background: linear-gradient(160deg, #e6f6fd, #cdeefb); margin-bottom: 10px; border-bottom: 4px solid var(--electric); }
+  .photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+  a.photo:hover img { transform: scale(1.03); transition: transform 0.3s; }
+  .initials { display: grid; place-items: center; height: 100%; font-family: var(--font-display); font-weight: 800; font-size: 3rem; color: var(--electric-ink); }
+  .office { font-family: var(--font-display); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; color: var(--electric-ink); margin: 0; }
+  h3 { font-size: 1.3rem; }
+  h3 a { color: var(--dark-navy); text-decoration: none; }
+  h3 a:hover { color: var(--electric-ink); }
+  .note { margin: 0; font-size: 0.85rem; color: var(--cool-grey); }
+  .links { display: flex; gap: 10px; flex-wrap: wrap; margin: 4px 0 0; font-size: 0.9rem; }
+</style>

@@ -30,7 +30,7 @@ function frontmatter(file) {
 for (const file of fs.readdirSync(path.join(content, 'pages'))) {
   const fm = frontmatter(path.join(content, 'pages', file));
   const slug = file.replace(/\.md$/, '');
-  if (!fm.squarespacePath || ['/home', '/candidates-campaigns', '/calendar-of-events', '/2024-teton-county-candidates'].includes(fm.squarespacePath)) continue;
+  if (!fm.squarespacePath || ['/home', '/candidates-campaigns', '/elected-officials', '/calendar-of-events', '/2024-teton-county-candidates'].includes(fm.squarespacePath)) continue;
   const target = fm.archived === 'true' ? '/' : `/${slug}`;
   if (fm.squarespacePath !== target) lines.push(`${fm.squarespacePath} ${target} 301`);
 }

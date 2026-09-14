@@ -93,6 +93,29 @@ collections:
       - { name: active, label: Show on site, widget: boolean, default: true }
       - { name: body, label: Notes (not shown), widget: markdown, required: false }
 
+  - name: officials
+    label: Elected officials
+    label_singular: Official
+    folder: src/content/officials
+    create: true
+    extension: md
+    format: frontmatter
+    slug: "{{slug}}"
+    sortable_fields: [level, order, name]
+    summary: "{{name}} — {{office}}"
+    fields:
+      - { name: name, label: Name, widget: string }
+      - { name: office, label: Office, widget: string, hint: "e.g. County Commissioner, State Senator, Senate District 17" }
+      - { name: level, label: Level, widget: select, options: ["Wyoming Legislature", "Teton County", "Town of Jackson"] }
+      - { name: order, label: Order within level, widget: number, default: 50, value_type: int }
+      - { name: photo, label: Photo, widget: image, required: false }
+      - { name: email, label: Email, widget: string, required: false }
+      - { name: phone, label: Phone, widget: string, required: false }
+      - { name: contactUrl, label: Contact form link, widget: string, required: false, hint: "For officials who use a web form instead of email" }
+      - { name: website, label: Profile or website, widget: string, required: false }
+      - { name: active, label: Currently in office, widget: boolean, default: true }
+      - { name: body, label: Notes (not shown), widget: markdown, required: false }
+
   - name: pages
     label: Pages
     label_singular: Page
