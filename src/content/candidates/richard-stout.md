@@ -1,5 +1,5 @@
 ---
-name: "Richard "Dick" Stout"
+name: 'Richard "Dick" Stout'
 office: "County & Prosecuting Attorney"
 level: "Teton County"
 order: 70
