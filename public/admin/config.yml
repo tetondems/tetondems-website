@@ -223,5 +223,11 @@ collections:
               - { name: showCandidates, label: Show the Candidates page, widget: boolean, default: true, hint: "Off after the election: removes the menu link and homepage section; /candidates sends people to Elected Officials" }
               - { name: dateText, label: Election date (as text), widget: string, hint: "e.g. Tuesday, November 3, 2026" }
               - { name: votingText, label: Voting sentence on the homepage, widget: text }
-              - { name: townNote, label: Note under Town of Jackson candidates, widget: text, required: false }
-              - { name: statewideNote, label: Note under Statewide candidates, widget: text, required: false, hint: "e.g. which offices have no Democrat this year" }
+              - name: notes
+                label: Notes under each candidate section (leave blank to show none)
+                widget: object
+                fields:
+                  - { name: Wyoming Legislature, label: Wyoming Legislature, widget: text, required: false }
+                  - { name: Teton County, label: Teton County, widget: text, required: false }
+                  - { name: Town of Jackson, label: Town of Jackson, widget: text, required: false }
+                  - { name: Statewide, label: Statewide, widget: text, required: false, hint: "e.g. which offices have no Democrat this year" }

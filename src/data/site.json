@@ -26,8 +26,12 @@
     "showCandidates": true,
     "dateText": "Tuesday, November 3, 2026",
     "votingText": "Early and absentee voting begins October 6. In Teton County you can register and vote the same day, all the way through Election Day.",
-    "townNote": "Town Council and Mayor are nonpartisan races. These candidates are registered Democrats and have given permission to be on the Teton Dems page.",
-    "statewideNote": "On every ballot in Wyoming. No Democrat is running for State Auditor or State Treasurer this year."
+    "notes": {
+      "Wyoming Legislature": "",
+      "Teton County": "",
+      "Town of Jackson": "Town Council and Mayor are nonpartisan races. These candidates are registered Democrats and have given permission to be on the Teton Dems page.",
+      "Statewide": "On every ballot in Wyoming. No Democrat is running for State Auditor or State Treasurer this year."
+    }
   },
   "announcement": {
     "show": false,
