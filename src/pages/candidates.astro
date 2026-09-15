@@ -8,6 +8,7 @@ const all = (await getCollection('candidates', ({ data }) => data.active)).sort(
 const groups = LEVELS.map((level) => ({ level, list: all.filter((c) => c.data.level === level) })).filter((g) => g.list.length);
 const notes: Record<string, string> = {
   'Town of Jackson': 'Town Council and Mayor are nonpartisan races. Candidates listed here asked to be included.',
+  'Statewide': 'On every ballot in Wyoming. No Democrat is running for State Auditor or State Treasurer this year.',
 };
 const tel = (p: string) => `tel:+1${p.replace(/\D/g, '')}`;
 ---
