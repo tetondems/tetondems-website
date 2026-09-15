@@ -1,8 +1,6 @@
 ---
-title: 2016 Caucus Surrogate Form
-navTitle: 2016 Caucus Surrogate Form
-archived: true
-squarespacePath: /surrogate
+title: 2016 Party Platform
+squarespacePath: /2016-party-platform
 updated: "2016-03-23"
 imported: true
 ---

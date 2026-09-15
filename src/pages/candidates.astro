@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import PersonCard from '../components/PersonCard.astro';
+import site from '../data/site.json';
 
 const LEVELS = ['Wyoming Legislature', 'Teton County', 'Town of Jackson', 'Statewide'] as const;
 const all = (await getCollection('candidates', ({ data }) => data.active)).sort((a, b) => a.data.order - b.data.order || a.data.name.localeCompare(b.data.name));
@@ -15,12 +16,16 @@ const tel = (p: string) => `tel:+1${p.replace(/\D/g, '')}`;
 <Base title="Candidates & Campaigns" description="Democratic candidates on the Teton County ballot in the November 3, 2026 general election, with links to their campaigns.">
   <div class="wrap">
     <header class="page-head">
-      <p class="eyebrow">2026 Voter Info</p>
+      <p class="eyebrow">{site.election.year} Voter Info</p>
       <h1>Candidates &amp; campaigns</h1>
-      <p class="lede">Democrats on the Teton County ballot for the <strong>November 3, 2026</strong> general election. Click through to learn where they stand and how to help.</p>
+      <p class="lede">Democrats on the Teton County ballot for the <strong>{site.election.dateText}</strong> general election. Click through to learn where they stand and how to help.</p>
     </header>
 
-    {groups.map(({ level, list }) => (
+    {!site.election.showCandidates && (
+      <p class="prose">The {site.election.year} election is over. See <a href="/elected-officials">who represents you now</a>, or <a href="/sign-up">join the e‑mail list</a> to hear when the next slate is announced.</p>
+    )}
+
+    {site.election.showCandidates && groups.map(({ level, list }) => (
       <section class="level">
         <div class="section-head">
           <h2>{level}</h2>

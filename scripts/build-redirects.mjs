@@ -32,12 +32,19 @@ function frontmatter(file) {
   return fm;
 }
 
+const site = JSON.parse(fs.readFileSync(path.join(root, 'src/data/site.json'), 'utf8'));
+if (!site.election?.showCandidates) lines.push('/candidates /elected-officials 302');
+const explicit = ['/home', '/candidates-campaigns', '/elected-officials', '/calendar-of-events', '/2024-teton-county-candidates', '/priorities', '/primary-election', '/general-election-info', '/registration-dates-cutoffs-1', '/voter-regulations-updates-3'];
 for (const file of fs.readdirSync(path.join(content, 'pages'))) {
   const fm = frontmatter(path.join(content, 'pages', file));
   const slug = file.replace(/\.md$/, '');
-  if (!fm.squarespacePath || ['/home', '/candidates-campaigns', '/elected-officials', '/calendar-of-events', '/2024-teton-county-candidates', '/priorities', '/primary-election', '/general-election-info', '/registration-dates-cutoffs-1', '/voter-regulations-updates-3'].includes(fm.squarespacePath)) continue;
-  const target = fm.archived === 'true' ? '/' : `/${slug}`;
-  if (fm.squarespacePath !== target) lines.push(`${fm.squarespacePath} ${target} 301`);
+  if (!fm.squarespacePath || explicit.includes(fm.squarespacePath)) continue;
+  if (fm.squarespacePath !== `/${slug}`) lines.push(`${fm.squarespacePath} /${slug} 301`);
+}
+// Retired pages: old URL -> homepage unless an explicit rule above says otherwise.
+for (const file of fs.readdirSync(path.join(content, 'archive'))) {
+  const fm = frontmatter(path.join(content, 'archive', file));
+  if (fm.squarespacePath && !explicit.includes(fm.squarespacePath)) lines.push(`${fm.squarespacePath} / 301`);
 }
 // Cloudflare caps _redirects at 100 "dynamic" rules and counts these deep links
 // against it, so only items from 2024 on get exact redirects. Older ones fall

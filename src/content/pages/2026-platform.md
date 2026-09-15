@@ -4,7 +4,6 @@ navTitle: 2026 Platform
 description: 2026 Platform
 section: Who We Are
 order: 3
-archived: false
 squarespacePath: /2026-platform
 updated: "2026-06-10"
 imported: true

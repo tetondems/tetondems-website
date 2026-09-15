@@ -2,9 +2,8 @@
 title: Election Dates & Deadlines
 navTitle: Election Dates & Deadlines
 description: Every date that matters for the November 3, 2026 general election in Teton County, straight from the County Clerk.
-section: 2026 Voter Info
+section: Voter Info
 order: 3
-archived: false
 embeds: []
 updated: "2026-09-14"
 imported: false

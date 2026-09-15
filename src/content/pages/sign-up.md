@@ -4,7 +4,6 @@ navTitle: Join our e-mail list
 description: Hear about events, elections, and ways to help. We send a few emails a year, never spam.
 section: Get Involved
 order: 5
-archived: false
 embeds:
   - mailchimp
 squarespacePath: /sign-up

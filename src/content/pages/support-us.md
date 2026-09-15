@@ -4,7 +4,6 @@ navTitle: Support Us
 description: Your donation elects Democrats, moves party priorities forward, and keeps the community informed.
 section: Support Us
 order: 1
-archived: false
 embeds:
   - mailchimp
 squarespacePath: /support-us

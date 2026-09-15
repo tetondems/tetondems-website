@@ -1,7 +1,5 @@
 ---
 title: Delegate Candidacy Form
-navTitle: Delegate Candidacy Form
-archived: true
 squarespacePath: /delegate-candidacy-form
 updated: "2024-04-03"
 imported: true

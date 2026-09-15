@@ -1,9 +1,8 @@
 ---
 title: How to Vote
 navTitle: How to Vote
-section: 2026 Voter Info
+section: Voter Info
 order: 2
-archived: false
 hero: /images/site/tetons-barn.jpg
 squarespacePath: /how-to-vote-teton-county-wy
 updated: "2026-04-28"

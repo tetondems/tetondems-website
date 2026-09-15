@@ -1,7 +1,5 @@
 ---
 title: Info
-navTitle: Info
-archived: true
 squarespacePath: /2022-teton-county-democratic-convention
 updated: "2022-04-14"
 imported: true

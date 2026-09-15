@@ -1,7 +1,5 @@
 ---
 title: 2022 County Convention
-navTitle: 2022 County Convention
-archived: true
 squarespacePath: /2022-county-convention
 updated: "2022-04-08"
 imported: true

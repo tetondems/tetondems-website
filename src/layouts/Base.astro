@@ -48,6 +48,11 @@ const ogImage = new URL(image ?? '/images/brand/180425-sed-tetondems-logo-locati
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
+    {site.announcement.show && site.announcement.text && (
+      <div class="announce" role="region" aria-label="Announcement">
+        <p class="wrap">{site.announcement.text}{site.announcement.link && site.announcement.linkLabel && <> <a href={site.announcement.link}>{site.announcement.linkLabel} →</a></>}</p>
+      </div>
+    )}
     <Header />
     <main id="main">
       <slot />
@@ -59,4 +64,7 @@ const ogImage = new URL(image ?? '/images/brand/180425-sed-tetondems-logo-locati
 <style>
   .skip { position: absolute; left: -999px; top: 8px; background: var(--dark-navy); color: var(--white); padding: 8px 12px; z-index: 100; }
   .skip:focus { left: 8px; }
+  .announce { background: var(--electric); color: var(--dark-navy); font-family: var(--font-display); font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; font-size: 0.95rem; }
+  .announce p { margin: 0; padding: 9px 0; }
+  .announce a { color: var(--dark-navy); text-decoration-thickness: 2px; }
 </style>

@@ -1,9 +1,8 @@
 ---
 title: Links and Resources
 navTitle: Links and Resources
-section: 2026 Voter Info
+section: Voter Info
 order: 4
-archived: false
 squarespacePath: /links-and-resources
 updated: "2026-04-13"
 imported: false

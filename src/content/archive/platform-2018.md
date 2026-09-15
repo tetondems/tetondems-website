@@ -1,8 +1,6 @@
 ---
 title: 2018 Platform
-navTitle: 2018 Platform
 description: 2018 Platform
-archived: true
 squarespacePath: /platform
 updated: "2018-06-02"
 imported: true

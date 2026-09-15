@@ -1,7 +1,5 @@
 ---
 title: Town Elections
-navTitle: Town Council
-archived: true
 squarespacePath: /town-council
 updated: "2020-10-24"
 imported: true

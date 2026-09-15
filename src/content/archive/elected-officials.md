@@ -1,10 +1,6 @@
 ---
 title: Elected Officials
-navTitle: Elected Officials
 description: Elected Officials
-section: Who We Are
-order: 2
-archived: true
 squarespacePath: /elected-officials
 updated: "2026-04-28"
 imported: false

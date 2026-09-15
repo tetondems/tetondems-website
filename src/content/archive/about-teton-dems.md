@@ -1,8 +1,6 @@
 ---
 title: Home
-navTitle: Home
 description: Teton County Democratic Party
-archived: true
 squarespacePath: /home
 updated: "2024-12-13"
 imported: false

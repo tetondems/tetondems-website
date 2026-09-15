@@ -14,5 +14,26 @@
     "action": "https://tetondems.us13.list-manage.com/subscribe/post?u=dcad50e134d0d8f88e0c9f3da&id=16de9de15d&f_id=00657ce9f0",
     "honeypot": "b_dcad50e134d0d8f88e0c9f3da_16de9de15d",
     "archive": "http://us13.campaign-archive1.com/home/?u=dcad50e134d0d8f88e0c9f3da&id=16de9de15d"
+  },
+  "hero": {
+    "headline": "Working together for the well-being of Teton County",
+    "subline": "Through education, advocacy, and elections. Everyone is welcome.",
+    "image": "/images/site/parade-2022.jpg",
+    "credit": "Fourth of July parade, Jackson, 2022"
+  },
+  "election": {
+    "year": "2026",
+    "showCandidates": true,
+    "dateText": "Tuesday, November 3, 2026",
+    "votingText": "Early and absentee voting begins October 6. In Teton County you can register and vote the same day, all the way through Election Day."
+  },
+  "announcement": {
+    "show": false,
+    "text": "",
+    "link": "",
+    "linkLabel": ""
+  },
+  "news": {
+    "show": true
   }
 }

@@ -1,7 +1,5 @@
 ---
 title: Primary Election
-navTitle: Primary Election
-archived: true
 squarespacePath: /primary-election
 updated: "2026-04-13"
 imported: false

@@ -1,7 +1,5 @@
 ---
 title: County Elections
-navTitle: County Commissioner
-archived: true
 squarespacePath: /county-elections-1
 updated: "2020-08-21"
 imported: true

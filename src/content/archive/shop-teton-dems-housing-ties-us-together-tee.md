@@ -1,7 +1,5 @@
 ---
 title: Teton Dems "Housing Ties Us Together" Tee
-navTitle: Teton Dems "Housing Ties Us Together" Tee
-archived: true
 squarespacePath: /new-products/teton-dems-housing-ties-us-together-tee
 imported: true
 ---

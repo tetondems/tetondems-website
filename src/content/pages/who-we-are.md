@@ -4,7 +4,6 @@ navTitle: Who We Are
 description: Officers, precinct committee officers, and what the Teton County Democratic Party stands for.
 section: Who We Are
 order: 1
-archived: false
 squarespacePath: /who-we-are
 updated: "2026-08-31"
 imported: false

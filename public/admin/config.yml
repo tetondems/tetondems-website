@@ -125,23 +125,40 @@ collections:
     format: frontmatter
     slug: "{{slug}}"
     sortable_fields: [section, order, title]
-    summary: "{{title}}{{archived | ternary(' (archived)', '')}}"
+    summary: "{{title}}{{hidden | ternary(' (hidden)', '')}}"
     view_groups:
       - { label: Section, field: section }
-      - { label: Archived, field: archived }
     fields:
       - { name: title, label: Title, widget: string }
       - { name: navTitle, label: Menu label, widget: string, required: false, hint: "Shorter name for the navigation menu" }
       - { name: description, label: Subtitle / description, widget: string, required: false }
-      - { name: section, label: Menu section, widget: select, required: false, options: ["Get Involved", "Who We Are", "2026 Voter Info", "Support Us"] }
+      - { name: section, label: Menu section, widget: select, required: false, options: ["Get Involved", "Who We Are", "Voter Info", "Support Us"], hint: "Voter Info shows with the election year from Site settings" }
       - { name: order, label: Order in menu, widget: number, required: false, value_type: int }
-      - { name: archived, label: Archived (hidden from site), widget: boolean, default: false }
+      - { name: hidden, label: Hidden from site, widget: boolean, default: false, hint: "Keeps the page but takes it off the site and menu" }
       - { name: hero, label: Banner photo, widget: image, required: false, hint: "Optional wide photo behind the page title" }
       - { name: embeds, label: Extras at the bottom, widget: select, multiple: true, required: false, options: [{ label: "E-mail signup form", value: mailchimp }, { label: "Donate button", value: donate }] }
       - { name: updated, label: Last updated, widget: datetime, format: "YYYY-MM-DD", time_format: false, required: false }
       - { name: squarespacePath, label: Old Squarespace URL, widget: hidden, required: false }
       - { name: imported, label: Imported, widget: hidden, required: false }
       - { name: body, label: Page content, widget: markdown }
+
+  - name: archive
+    label: Archived pages
+    label_singular: Archived page
+    folder: src/content/archive
+    create: false
+    delete: true
+    extension: md
+    format: frontmatter
+    summary: "{{title}}"
+    description: "Retired pages, mostly from the old Squarespace site. Not published. To bring one back, ask the site maintainer to move it into Pages."
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: description, label: Description, widget: string, required: false }
+      - { name: squarespacePath, label: Old Squarespace URL, widget: string, required: false }
+      - { name: updated, label: Last updated, widget: datetime, format: "YYYY-MM-DD", time_format: false, required: false }
+      - { name: imported, label: Imported, widget: hidden, required: false }
+      - { name: body, label: Content, widget: markdown }
 
   - name: settings
     label: Site settings
@@ -164,7 +181,45 @@ collections:
           - name: mailchimp
             label: Mailchimp
             widget: object
+            collapsed: true
             fields:
               - { name: action, label: Form action URL, widget: string }
               - { name: honeypot, label: Honeypot field name, widget: string }
               - { name: archive, label: Campaign archive URL, widget: string }
+      - name: homepage
+        label: Homepage
+        file: src/data/site.json
+        fields:
+          - name: hero
+            label: Hero (top of homepage)
+            widget: object
+            fields:
+              - { name: headline, label: Headline, widget: string }
+              - { name: subline, label: Subline, widget: string }
+              - { name: image, label: Photo, widget: image, hint: "Wide photo; the site darkens the bottom for the text" }
+              - { name: credit, label: Photo caption, widget: string, required: false }
+          - name: announcement
+            label: Announcement bar
+            widget: object
+            fields:
+              - { name: show, label: Show the bar, widget: boolean, default: false }
+              - { name: text, label: Text, widget: string, required: false, hint: "One short line, e.g. Polls are open today 7 a.m. to 7 p.m." }
+              - { name: link, label: Link, widget: string, required: false }
+              - { name: linkLabel, label: Link label, widget: string, required: false }
+          - name: news
+            label: News section
+            widget: object
+            fields:
+              - { name: show, label: Show News in the menu and on the homepage, widget: boolean, default: true }
+      - name: election
+        label: Election
+        file: src/data/site.json
+        fields:
+          - name: election
+            label: Election
+            widget: object
+            fields:
+              - { name: year, label: Election year, widget: string, hint: "Shown in the Voter Info menu label" }
+              - { name: showCandidates, label: Show the Candidates page, widget: boolean, default: true, hint: "Off after the election: removes the menu link and homepage section; /candidates sends people to Elected Officials" }
+              - { name: dateText, label: Election date (as text), widget: string, hint: "e.g. Tuesday, November 3, 2026" }
+              - { name: votingText, label: Voting sentence on the homepage, widget: text }

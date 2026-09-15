@@ -4,7 +4,6 @@ navTitle: Contact Us
 description: Contact Us
 section: Get Involved
 order: 6
-archived: false
 squarespacePath: /contact
 updated: "2020-07-14"
 imported: true

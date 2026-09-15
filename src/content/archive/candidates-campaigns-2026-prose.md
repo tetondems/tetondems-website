@@ -1,9 +1,6 @@
 ---
 title: Candidates & Campaigns
-navTitle: Candidates & Campaigns
 description: See who is running and how you can help!
-section: 2026 Voter Info
-archived: true
 squarespacePath: /candidates-campaigns
 updated: "2026-09-11"
 imported: true

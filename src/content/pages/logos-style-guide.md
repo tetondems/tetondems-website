@@ -4,7 +4,6 @@ navTitle: Logos & Style Guide
 description: Logos &amp; Style Guide
 section: Who We Are
 order: 5
-archived: false
 squarespacePath: /logos-style-guide
 updated: "2018-05-10"
 imported: false

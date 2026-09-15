@@ -24,11 +24,14 @@ Things to know:
   site* to hide someone without deleting them. Ask candidates to confirm they
   own the rights to any photo before uploading it.
 - **Pages** live in the navigation according to their *Menu section* and *Order
-  in menu*. Tick *Archived* to keep a page in the repository but off the site.
-  The Squarespace-era pages that were retired (2016 caucus, 2020 candidates,
-  the store, and so on) are archived this way.
-- **Site settings** holds the contact details, social links, the ActBlue
-  donate link, and the Mailchimp form settings used across the site.
+  in menu*. Tick *Hidden from site* to keep a page but take it off the site.
+- **Archived pages** are the retired Squarespace-era pages (2016 caucus, 2020
+  candidates, the store, and so on). They are never published. To revive one,
+  a maintainer moves its file from `src/content/archive` to `src/content/pages`.
+- **Site settings** has three screens: *Contact & links* (address, social
+  links, ActBlue, Mailchimp), *Homepage* (hero headline and photo, the
+  announcement bar, whether News shows), and *Election* (election year, the
+  date text, and the switch that hides the Candidates page after an election).
 - The editor's media library shows everything under `public/images`. Put new
   uploads in the `uploads` subfolder and keep them under about 1 MB.
 
@@ -60,9 +63,10 @@ npm run preview    # serves dist/ locally
 Layout:
 
 ```
-src/content/          Markdown content (pages, news, events, candidates, officials)
+src/content/          Markdown content (pages, archive, news, events, candidates, officials)
 src/content.config.ts Schemas for each collection
-src/data/site.json    Contact info, links, Mailchimp settings
+src/data/site.json    Contact info, links, Mailchimp, homepage hero, announcement, election toggles
+src/lib/nav.ts        Builds the menu from pages, built-in routes, and settings
 src/pages/            Routes: index, [...slug] (pages), events/, news/, candidates, elected-officials
 src/components/       Header, Footer, EventCard, MailchimpForm
 src/styles/global.css Brand tokens and shared styles

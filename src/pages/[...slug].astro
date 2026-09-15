@@ -5,7 +5,7 @@ import MailchimpForm from '../components/MailchimpForm.astro';
 import { formatPostDate } from '../lib/dates';
 
 export async function getStaticPaths() {
-  const pages = await getCollection('pages', ({ data }) => !data.archived);
+  const pages = await getCollection('pages', ({ data }) => !data.hidden);
   return pages.map((page) => ({ params: { slug: page.id }, props: { page } }));
 }
 const { page } = Astro.props;

@@ -1,7 +1,5 @@
 ---
 title: 2016 Caucus FAQ's
-navTitle: 2016 Caucus FAQ's
-archived: true
 squarespacePath: /2016caucus
 updated: "2016-03-23"
 imported: true

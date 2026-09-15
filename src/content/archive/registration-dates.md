@@ -1,7 +1,5 @@
 ---
 title: Registration Dates & Cutoffs
-navTitle: Registration Dates & Cutoffs
-archived: true
 squarespacePath: /registration-dates-cutoffs-1
 updated: "2026-04-13"
 imported: false

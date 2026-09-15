@@ -1,7 +1,5 @@
 ---
 title: Statewide and National Elections
-navTitle: Statewide and National Elections
-archived: true
 squarespacePath: /statewide-and-national-elections
 updated: "2020-10-24"
 imported: true

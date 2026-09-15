@@ -1,8 +1,6 @@
 ---
 title: Priorities
-navTitle: Priorities
 description: 2016 Priorities
-archived: true
 squarespacePath: /priorities
 updated: "2016-02-18"
 imported: false

@@ -1,7 +1,5 @@
 ---
 title: General Election
-navTitle: General Election
-archived: true
 squarespacePath: /general-election-info
 updated: "2026-04-13"
 imported: false

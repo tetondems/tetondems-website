@@ -1,7 +1,5 @@
 ---
 title: Voter Regulations & Updates
-navTitle: Voter Regulations & Updates
-archived: true
 squarespacePath: /voter-regulations-updates-3
 updated: "2026-04-13"
 imported: false

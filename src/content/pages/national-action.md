@@ -3,7 +3,6 @@ title: National Action
 navTitle: National Action
 section: Get Involved
 order: 3
-archived: false
 hero: /images/site/tetons-barn.jpg
 squarespacePath: /national-action
 updated: "2026-04-15"

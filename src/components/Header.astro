@@ -1,25 +1,8 @@
 ---
-import { getCollection } from 'astro:content';
 import site from '../data/site.json';
+import { buildNav } from '../lib/nav';
 
-const pages = (await getCollection('pages', ({ data }) => !data.archived && data.section))
-  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
-
-// Built-in pages that live alongside the CMS pages in a menu section.
-const builtIn: Record<string, { title: string; href: string; order: number }[]> = {
-  'Who We Are': [{ title: 'Elected Officials', href: '/elected-officials', order: 2 }],
-  '2026 Voter Info': [{ title: 'Candidates & Campaigns', href: '/candidates', order: 1 }],
-};
-const section = (name: string) =>
-  [...pages.filter((p) => p.data.section === name).map((p) => ({ title: p.data.navTitle ?? p.data.title, href: `/${p.id}`, order: p.data.order ?? 99 })), ...(builtIn[name] ?? [])]
-    .sort((a, b) => a.order - b.order || a.title.localeCompare(b.title));
-const groups = [
-  { label: 'Upcoming Events', href: '/events' },
-  { label: 'Get Involved', items: section('Get Involved') },
-  { label: 'Who We Are', items: section('Who We Are') },
-  { label: '2026 Voter Info', items: section('2026 Voter Info') },
-  { label: 'News', href: '/news' },
-];
+const groups = await buildNav();
 const current = Astro.url.pathname;
 ---
 <header class="site-header">

@@ -1,7 +1,5 @@
 ---
 title: 2020 Virtual Convention
-navTitle: 2020 Virtual Convention
-archived: true
 squarespacePath: /2020-teton-county-democratic-caucus
 updated: "2020-05-13"
 imported: true

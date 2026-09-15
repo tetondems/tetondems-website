@@ -26,18 +26,18 @@ const ways = [
 ---
 <Base title={site.name} description={site.description}>
   <section class="hero">
-    <img class="photo" src="/images/site/parade-2022.jpg" alt="" width="1200" height="800" fetchpriority="high" />
+    <img class="photo" src={site.hero.image} alt="" width="1200" height="800" fetchpriority="high" />
     <div class="wrap content">
       <p class="eyebrow">Teton County Democratic Party · Jackson Hole, Wyoming</p>
-      <h1>Working together for the well‑being of Teton County</h1>
-      <p class="lede">Through education, advocacy, and elections. Everyone is welcome.</p>
+      <h1>{site.hero.headline}</h1>
+      <p class="lede">{site.hero.subline}</p>
       <div class="actions">
         <a class="button electric" href="/sign-up">Join our e‑mail list</a>
         <a class="button ghost" href="/local-action">Get involved</a>
         <a class="button red" href={site.donateUrl} rel="noopener">Donate</a>
       </div>
     </div>
-    <p class="credit">Fourth of July parade, Jackson, 2022</p>
+    {site.hero.credit && <p class="credit">{site.hero.credit}</p>}
   </section>
 
   <section class="section">
@@ -54,13 +54,13 @@ const ways = [
     </div>
   </section>
 
-  {candidates.length > 0 && (
+  {site.election.showCandidates && candidates.length > 0 && (
     <section class="section navy">
       <div class="wrap ballot">
         <div class="ballot-text">
-          <p class="eyebrow">General election · Tuesday, November 3, 2026</p>
+          <p class="eyebrow">General election · {site.election.dateText}</p>
           <h2>Democrats on your ballot</h2>
-          <p>Early and absentee voting begins October 6. In Teton County you can register and vote the same day, all the way through Election Day.</p>
+          <p>{site.election.votingText}</p>
           <p class="actions"><a class="button electric" href="/candidates">Meet the candidates</a><a class="button ghost" href="/how-to-vote">How to vote</a></p>
         </div>
         <ul class="faces" aria-label="Some of the candidates">
@@ -94,20 +94,22 @@ const ways = [
   </section>
 
   <section class="section pale">
-    <div class="wrap two">
-      <div>
-        <div class="section-head">
-          <h2>Latest news</h2>
-          <a href="/news">All news →</a>
+    <div class:list={['wrap', site.news.show ? 'two' : 'one']}>
+      {site.news.show && (
+        <div>
+          <div class="section-head">
+            <h2>Latest news</h2>
+            <a href="/news">All news →</a>
+          </div>
+          <ul class="news-list">
+            {posts.map((p) => (
+              <li><a href={`/news/${p.id}`}>{p.data.title}</a><span class="muted small">{formatPostDate(p.data.date)}</span></li>
+            ))}
+          </ul>
         </div>
-        <ul class="news-list">
-          {posts.map((p) => (
-            <li><a href={`/news/${p.id}`}>{p.data.title}</a><span class="muted small">{formatPostDate(p.data.date)}</span></li>
-          ))}
-        </ul>
-      </div>
+      )}
       <div>
-        <MailchimpForm />
+        <MailchimpForm compact={!site.news.show} />
       </div>
     </div>
   </section>
@@ -147,6 +149,8 @@ const ways = [
   .way .more { margin-top: auto; font-family: var(--font-display); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.9rem; color: var(--electric-ink); }
 
   .two { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: start; }
+  .one { display: grid; justify-content: center; }
+  .one :global(.mc) { max-width: 640px; }
   .news-list { list-style: none; padding: 0; margin: 0; }
   .news-list li { padding: 12px 0; border-bottom: 1px solid var(--light-grey); display: grid; gap: 2px; }
   .news-list a { font-family: var(--font-slab); font-weight: 600; font-size: 1.1rem; text-decoration: none; color: var(--dark-navy); }

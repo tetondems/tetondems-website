@@ -3,7 +3,6 @@ title: State Action
 navTitle: State Action
 section: Get Involved
 order: 2
-archived: false
 hero: /images/site/tetons-barn.jpg
 squarespacePath: /state-action
 updated: "2026-04-15"
