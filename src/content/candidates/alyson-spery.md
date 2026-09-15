@@ -5,4 +5,5 @@ level: "Town of Jackson"
 order: 20
 incumbent: true
 election: "2026 General"
+active: false
 ---
