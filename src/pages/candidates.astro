@@ -7,7 +7,9 @@ import site from '../data/site.json';
 const LEVELS = ['Wyoming Legislature', 'Teton County', 'Town of Jackson', 'Statewide'] as const;
 const all = (await getCollection('candidates', ({ data }) => data.active)).sort((a, b) => a.data.order - b.data.order || a.data.name.localeCompare(b.data.name));
 const groups = LEVELS.map((level) => ({ level, list: all.filter((c) => c.data.level === level) })).filter((g) => g.list.length);
+const NOTE_KEYS = { 'Wyoming Legislature': 'legislature', 'Teton County': 'county', 'Town of Jackson': 'town', 'Statewide': 'statewide' } as const;
 const notes: Record<string, string> = site.election.notes;
+const noteFor = (level: keyof typeof NOTE_KEYS) => notes[NOTE_KEYS[level]]?.trim();
 const tel = (p: string) => `tel:+1${p.replace(/\D/g, '')}`;
 ---
 <Base title="Candidates & Campaigns" description="Democratic candidates on the Teton County ballot in the November 3, 2026 general election, with links to their campaigns.">
@@ -26,7 +28,7 @@ const tel = (p: string) => `tel:+1${p.replace(/\D/g, '')}`;
       <section class="level">
         <div class="section-head">
           <h2>{level}</h2>
-          {notes[level]?.trim() && <p class="muted note">{notes[level]}</p>}
+          {noteFor(level) && <p class="muted note">{noteFor(level)}</p>}
         </div>
         <div class="people">
           {list.map(({ data: c }) => (

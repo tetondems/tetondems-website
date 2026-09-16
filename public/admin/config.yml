@@ -227,7 +227,7 @@ collections:
                 label: Notes under each candidate section (leave blank to show none)
                 widget: object
                 fields:
-                  - { name: Wyoming Legislature, label: Wyoming Legislature, widget: text, required: false }
-                  - { name: Teton County, label: Teton County, widget: text, required: false }
-                  - { name: Town of Jackson, label: Town of Jackson, widget: text, required: false }
-                  - { name: Statewide, label: Statewide, widget: text, required: false, hint: "e.g. which offices have no Democrat this year" }
+                  - { name: legislature, label: Wyoming Legislature, widget: text, required: false }
+                  - { name: county, label: Teton County, widget: text, required: false }
+                  - { name: town, label: Town of Jackson, widget: text, required: false }
+                  - { name: statewide, label: Statewide, widget: text, required: false, hint: "e.g. which offices have no Democrat this year" }
