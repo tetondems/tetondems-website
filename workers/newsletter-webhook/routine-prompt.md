@@ -6,8 +6,8 @@ either one.
 
 Your job: propose the newsletter's upcoming events for the party website (this
 repository, tetondems/tetondems-website) in a pull request that a person will
-review. Only change files in `src/content/events/`. Never merge a pull request
-and never push to `main`.
+review. Only change files in `src/content/events/` and add images to
+`public/images/uploads/`. Never merge a pull request and never push to `main`.
 
 ## 1. Read the newsletter
 
@@ -32,7 +32,7 @@ and never push to `main`.
   place, or details, edit that file rather than adding another.
 - An open pull request from a branch starting with `claude/newsletter-` is an
   earlier run still waiting for review. Add to that pull request instead of
-  opening a second one (see step 6), and don't repeat its events. Where this
+  opening a second one (see step 7), and don't repeat its events. Where this
   newsletter corrects one of them, for example with a new date, fix it there,
   renaming the file if the date changed.
 
@@ -47,9 +47,10 @@ candidate forums, meet-and-greets, and so on. Skip:
   early voting
 - anything without a date
 
-If an event has a date but no start time, look for the time on pages the
-newsletter links to. If you still can't find it, don't guess: list the event
-under "Needs details" in the pull request and don't add a file for it.
+If an event has a date but no start time, look for the time on the event's
+flyer, if the newsletter has one (see step 5), and on pages the newsletter links
+to. If you still can't find it, don't guess: list the event under "Needs
+details" in the pull request and don't add a file for it.
 
 ## 4. Write the files
 
@@ -75,7 +76,7 @@ Details from the newsletter, in plain Markdown, including who is hosting.
 ```
 
 - Only `title` and `start` are required. Leave out anything you don't know
-  (`end`, `link`, a location field) rather than inventing it. Don't add images.
+  (`end`, `link`, a location field) rather than inventing it.
 - Times are Mountain time, written with that date's offset: `-06:00` during
   daylight saving time, `-07:00` otherwise. To check a date, run
   `TZ=America/Denver date -d '2026-11-05 18:00' +%z`.
@@ -84,11 +85,42 @@ Details from the newsletter, in plain Markdown, including who is hosting.
   or on the venue's own website.
 - Keep to what the newsletter says. Tidy the wording, but don't add claims.
 
-## 5. Check the build
+## 5. Add a flyer, only if the newsletter has one
+
+An event gets an image only when the newsletter includes one made for that
+event: a flyer, poster, or graphic that shows the event itself, such as its
+name, date, or host. No image is far better than a wrong one.
+
+- Download each image the newsletter hosts on `mcusercontent.com` and open it
+  to see what it shows. Don't decide from where it sits in the newsletter, its
+  file name, or the text around it.
+- Never use stock photos, logos, banners, donate or volunteer graphics, or
+  photos of places or people that weren't made for the event. A watermark
+  (Getty Images, Shutterstock, and the like) or a stock-style description in
+  the file's metadata (`file <image>` shows it) marks a stock photo.
+- Never create, generate, edit, or crop an image. Shrinking it is the only
+  change allowed.
+- If you're not sure an image belongs to an event, leave it out and list its
+  URL under "Needs details" so a person can decide.
+- One flyer that covers several events, such as a forum series, can go on each
+  of them.
+- Save chosen images to a scratch folder, named like the event file
+  (`YYYY-MM-DD-short-title`) with the extension of their real format. `file`
+  tells you the format; Mailchimp sometimes serves a JPEG under a `.png` name.
+  Run `node scripts/optimize-images.mjs <scratch folder>` to shrink large ones,
+  leave out any that are still over 1 MB, and move the rest into
+  `public/images/uploads/`. Then set `image: /images/uploads/<file name>` in
+  the event file.
+- The site shows event images without alt text, so everything important on a
+  flyer (date, time, place, host, RSVP) must also be in the event's text. If a
+  flyer gives a detail the newsletter text doesn't, such as the start time, you
+  can use it, and say so in the pull request.
+
+## 6. Check the build
 
 Run `npm ci`, then `npm run build`. Fix anything the content schema rejects.
 
-## 6. Open or update the pull request
+## 7. Open or update the pull request
 
 Commit in this repository's style, for example
 `Events: candidate forums from the Sept 28 newsletter`.
@@ -101,8 +133,9 @@ Commit in this repository's style, for example
 Write the description for someone who hasn't read the newsletter:
 
 - a link to each newsletter it covers, with its campaign id
-- a table of the events added or changed: date, time (MT), title, place, and
-  file, noting any event outside Teton County or hosted by another group
+- a table of the events added or changed: date, time (MT), title, place, file,
+  and image (with the newsletter image's URL), noting any event outside Teton
+  County or hosted by another group
 - what you skipped and why: already on the site, already past, or not an event
 - **Needs details:** missing times, contradictions between newsletters (such as
   two dates for the same forum), and anything else a person should decide
