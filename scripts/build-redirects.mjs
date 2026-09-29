@@ -48,7 +48,7 @@ for (const file of fs.readdirSync(path.join(content, 'archive'))) {
 }
 // Cloudflare caps _redirects at 100 "dynamic" rules and counts these deep links
 // against it, so only items from 2024 on get exact redirects. Older ones fall
-// back to the /events/* and /news-1/* section rules above.
+// back to the /events and /news-1/* section rules below.
 for (const dir of ['events', 'news']) {
   for (const file of fs.readdirSync(path.join(content, dir))) {
     if (!/^20(2[4-9]|[3-9]\d)-/.test(file)) continue;
@@ -57,7 +57,9 @@ for (const dir of ['events', 'news']) {
   }
 }
 // Wildcards last: Cloudflare takes the first matching rule, so exact rules must come first.
-lines.push('/news-1/* /news 301', '/events/* /events 301', '/new-products/* /support-us 301', '/s/* /files/:splat 301');
+// Cloudflare applies these even where a real page exists, so the events rule only matches
+// Squarespace's /events/<year>/<month>/<day>/<slug> links, not the new /events/<id> pages.
+lines.push('/news-1/* /news 301', '/events/:year/:month/:day/:slug /events 301', '/new-products/* /support-us 301', '/s/* /files/:splat 301');
 const out = lines.filter((l, i, a) => a.indexOf(l) === i).join('\n') + '\n';
 fs.writeFileSync(path.join(root, 'public/_redirects'), out);
 console.log(`wrote public/_redirects (${lines.length} rules)`);

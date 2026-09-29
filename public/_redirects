@@ -60,6 +60,6 @@
 /events/2025/5/12/volunteer-at-the-seinor-center-3megb-6dhsb-4fnmj-cx9yx-ynydc-m5n8z-x2kk4-j66wb-as6dt-a745t /events/2026-11-20-volunteer-at-the-senior-center 301
 /events/2025/5/12/volunteer-at-the-seinor-center-3megb-6dhsb-4fnmj-cx9yx-ynydc-m5n8z-x2kk4-j66wb-as6dt-a745t-47pak /events/2026-12-18-volunteer-at-the-senior-center 301
 /news-1/* /news 301
-/events/* /events 301
+/events/:year/:month/:day/:slug /events 301
 /new-products/* /support-us 301
 /s/* /files/:splat 301
