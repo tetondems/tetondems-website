@@ -75,6 +75,7 @@ public/images/brand/  Logo package (SVG/PNG) from the 2018 brand guide
 public/images/archive/ Every image from the Squarespace site, by content hash
 public/files/         PDFs and the logo zip that were downloadable on the old site
 scripts/              Importer and redirect generator (see below)
+workers/newsletter-webhook/ Mailchimp webhook relay for newsletter event PRs (see below)
 ```
 
 Brand: colors and type follow the 2018 Sharp Eye Deer brand style guide
@@ -159,3 +160,12 @@ email) and a DMARC record; neither existed on the old DNS.
   `squarespacePath` front matter. It runs automatically before each build.
 - `scripts/gallery-images.json` lists the candidate photos that were in
   Squarespace gallery blocks, for reference.
+
+## Newsletter events
+
+When a Mailchimp newsletter goes out, a Claude Code routine reads it and opens a
+pull request that adds its upcoming events to `src/content/events/`. A person
+reviews and merges it. Mailchimp reaches the routine through a small Cloudflare
+Worker in `workers/newsletter-webhook/`, which is deployed separately from the
+site. Setup and day-to-day notes are in
+[its README](workers/newsletter-webhook/README.md).

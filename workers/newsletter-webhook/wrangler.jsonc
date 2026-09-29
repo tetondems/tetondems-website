@@ -1,0 +1,17 @@
+{
+  // Mailchimp "campaign sent" webhook -> Claude Code routine. See README.md.
+  // Deploy from this folder with `npx wrangler deploy`; the repo root's
+  // wrangler.jsonc is the website.
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "tetondems-newsletter-webhook",
+  "main": "src/index.js",
+  "compatibility_date": "2026-09-01",
+  "observability": { "enabled": true },
+  // Not secret: the same audience and archive links are in src/data/site.json.
+  "vars": {
+    "MAILCHIMP_LIST_ID": "16de9de15d",
+    "MAILCHIMP_ARCHIVE": "https://us13.campaign-archive.com/?u=dcad50e134d0d8f88e0c9f3da"
+  }
+  // Secrets, set with `npx wrangler secret put <NAME>`: WEBHOOK_SECRET,
+  // ROUTINE_FIRE_URL, ROUTINE_TOKEN, and optionally MAILCHIMP_SIGNING_SECRET.
+}
