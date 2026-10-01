@@ -1,10 +1,10 @@
 ---
-title: School Board Forum
-start: "2026-10-15T18:00:00-06:00"
+title: School Board, Hospital Board and Conservation District Forum
+start: "2026-10-01T18:00:00-06:00"
 location:
   name: Teton County Library
   address: 125 Virginian Ln, Jackson, WY, 83001
-excerpt: The League of Women Voters hosts a school board candidate forum at the Teton County Library.
+excerpt: The League of Women Voters hosts a forum for Teton County School District, St. John's Hospital Board, and Teton Conservation District Board candidates at the Teton County Library.
 categories: []
 ---
 
