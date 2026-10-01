@@ -3,6 +3,7 @@ name: "Ana Cordova"
 office: "Superintendent of Public Instruction"
 level: "Statewide"
 order: 50
+photo: "/images/candidates/ana-cordova.jpg"
 website: "https://projects.wyofile.com/election-guide-2026/candidates/cordova-ana/"
 facebook: "https://www.facebook.com/profile.php?id=61590291167774"
 incumbent: false
