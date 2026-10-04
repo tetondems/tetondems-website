@@ -40,6 +40,6 @@
     "linkLabel": ""
   },
   "news": {
-    "show": true
+    "show": false
   }
 }
